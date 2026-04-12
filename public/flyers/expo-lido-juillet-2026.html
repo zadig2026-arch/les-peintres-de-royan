@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exposition — Les Peintres de Royan — Lido — Juillet 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    font-family: 'DM Sans', sans-serif;
+    color: #FAF7F3;
+    background: #0d0d0b;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Top: 3 large artworks side by side */
+  .hero-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .hero-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Middle band: smaller artworks */
+  .mid-strip {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    height: 18%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+
+  .mid-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Gradient over everything below mid-strip */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(13, 13, 11, 0.3) 45%,
+      rgba(13, 13, 11, 0.7) 55%,
+      rgba(13, 13, 11, 0.95) 62%,
+      #0d0d0b 68%
+    );
+  }
+
+  .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 50px 55px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #D4A054;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.08;
+    margin-bottom: 8px;
+  }
+
+  h1 em { color: #D4A054; font-style: italic; }
+
+  .venue {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    color: #A89B8C;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  .separator {
+    width: 45px;
+    height: 2px;
+    background: #D4A054;
+    margin-bottom: 28px;
+  }
+
+  .details {
+    display: flex;
+    gap: 55px;
+    margin-bottom: 35px;
+  }
+
+  .detail-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #D4A054;
+    margin-bottom: 5px;
+  }
+
+  .detail-value {
+    font-size: 15px;
+    color: #FAF7F3;
+    line-height: 1.45;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .contact {
+    font-size: 11px;
+    color: #5a5550;
+    line-height: 1.7;
+  }
+
+  .free-badge {
+    background: #D4A054;
+    color: #0d0d0b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 9px 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-strip">
+  <img src="../images/artistes/astrid-van-der-weerd/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/lydia-leas/oeuvre-3.jpg" alt="">
+  <img src="../images/artistes/catherine-delcan/oeuvre-1.jpg" alt="">
+</div>
+
+<div class="mid-strip">
+  <img src="../images/artistes/odile-naulin/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/martine-cavalec/oeuvre-2.jpg" alt="">
+  <img src="../images/artistes/nicole-lesueur/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/milah-hernandez/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/lise-thabaud/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/yamina-laurencon/oeuvre-1.jpg" alt="">
+</div>
+
+<div class="overlay"></div>
+
+<div class="content">
+  <div class="tag">Exposition estivale</div>
+
+  <h1>Les Peintres<br><em>de Royan</em></h1>
+
+  <p class="venue">Cinéma Le Lido — Salle VIP</p>
+
+  <div class="separator"></div>
+
+  <div class="details">
+    <div>
+      <div class="detail-label">Dates</div>
+      <div class="detail-value">13 — 26 juillet 2026</div>
+    </div>
+    <div>
+      <div class="detail-label">Horaires</div>
+      <div class="detail-value">14h — 19h<br>Tous les jours</div>
+    </div>
+    <div>
+      <div class="detail-label">Contact</div>
+      <div class="detail-value">06 51 76 42 44</div>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="contact">
+      lespeintresderoyan@gmail.com · instagram.com/lespeintresderoyan
+    </div>
+    <div class="free-badge">Entrée libre</div>
+  </div>
+</div>
+
+</body>
+</html>

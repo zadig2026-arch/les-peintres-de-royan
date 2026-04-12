@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calendrier des expositions 2026 — Les Peintres de Royan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    font-family: 'DM Sans', sans-serif;
+    color: #2C2824;
+    background: #F5F0EB;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Top mosaic — fills top 42% */
+  .top-mosaic {
+    height: 340px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  .top-mosaic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 0;
+  }
+
+  .top-mosaic .span2 { grid-column: span 2; }
+
+  .main {
+    padding: 30px 50px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 5px;
+  }
+
+  h1 em { color: #C4572A; font-style: italic; }
+
+  .sub {
+    font-size: 13px;
+    color: #A89B8C;
+    margin-bottom: 20px;
+  }
+
+  .separator {
+    width: 40px;
+    height: 2px;
+    background: #C4572A;
+    margin-bottom: 22px;
+  }
+
+  .expos { flex: 1; }
+
+  .expo-item {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(44, 40, 36, 0.08);
+    align-items: baseline;
+  }
+
+  .expo-dates {
+    font-size: 13px;
+    font-weight: 700;
+    color: #C4572A;
+  }
+
+  .expo-lieu {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+  }
+
+  .expo-ville {
+    font-size: 11px;
+    color: #A89B8C;
+  }
+
+  .footer {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid rgba(44, 40, 36, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: #A89B8C;
+    line-height: 1.6;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-right .name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    color: #2C2824;
+  }
+
+  .footer-right .note {
+    font-size: 10px;
+    color: #A89B8C;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-mosaic">
+  <div class="span2"><img src="../images/artistes/astrid-van-der-weerd/oeuvre-1.jpg" alt=""></div>
+  <img src="../images/artistes/catherine-delcan/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/lydia-leas/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/odile-naulin/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/martine-cavalec/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/nicole-lesueur/oeuvre-1.jpg" alt="">
+  <div class="span2"><img src="../images/artistes/milah-hernandez/oeuvre-1.jpg" alt=""></div>
+  <img src="../images/artistes/lise-thabaud/oeuvre-1.jpg" alt="">
+  <img src="../images/artistes/catherine-mouzon/oeuvre-1.jpg" alt="">
+</div>
+
+<div class="main">
+  <h1>Expositions <em>2026</em></h1>
+  <p class="sub">Les Peintres de Royan — Collectif d'art contemporain</p>
+  <div class="separator"></div>
+
+  <div class="expos">
+    <div class="expo-item">
+      <div class="expo-dates">2 — 18 janv.</div>
+      <div class="expo-lieu">Cinéma Le Lido — Salle VIP</div>
+      <div class="expo-ville">Royan</div>
+    </div>
+    <div class="expo-item">
+      <div class="expo-dates">12 — 25 mai</div>
+      <div class="expo-lieu">Temple de Royan</div>
+      <div class="expo-ville">Royan</div>
+    </div>
+    <div class="expo-item">
+      <div class="expo-dates">13 — 26 juil.</div>
+      <div class="expo-lieu">Cinéma Le Lido — Salle VIP</div>
+      <div class="expo-ville">Royan</div>
+    </div>
+    <div class="expo-item">
+      <div class="expo-dates">Août</div>
+      <div class="expo-lieu">Jardins de la Mer — Plein air</div>
+      <div class="expo-ville">Royan</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      lespeintresderoyan@gmail.com<br>
+      06 51 76 42 44<br>
+      instagram.com/lespeintresderoyan
+    </div>
+    <div class="footer-right">
+      <div class="name">Les Peintres de Royan</div>
+      <div class="note">Entrée libre à toutes les expositions</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
