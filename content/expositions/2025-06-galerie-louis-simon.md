@@ -7,7 +7,7 @@ date_fin: "2025-07-06"
 horaires: "10h à 12h30"
 statut: "passee"
 entree_libre: true
-image_principale: ""
+image_principale: "/images/expositions/cover-galerie-louis-simon.jpg"
 description: "Neuf artistes présentent une cinquantaine de créations autour du thème des quatre éléments — eau, terre, feu, air. Acrylique, pastel, huile, gravure, encre, fusain, collage et récupération de matériaux habillent les grilles de la galerie."
 photos_galerie: []
 visible: true

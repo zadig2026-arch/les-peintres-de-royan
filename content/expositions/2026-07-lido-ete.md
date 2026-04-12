@@ -7,7 +7,7 @@ date_fin: "2026-07-26"
 horaires: "14h à 19h"
 statut: "a-venir"
 entree_libre: true
-image_principale: ""
+image_principale: "/images/expositions/cover-lido-2026.jpg"
 description: "Les Peintres de Royan reviennent au cinéma Le Lido pour une exposition estivale dans la salle VIP."
 photos_galerie: []
 visible: true
