@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/le-collectif",
     "/artistes",
+    "/oeuvres",
     "/expositions",
     "/nous-rejoindre",
     "/contact",

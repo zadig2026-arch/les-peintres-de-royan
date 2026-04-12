@@ -7,6 +7,7 @@ import Logo from "./Logo";
 const links = [
   { href: "/le-collectif", label: "Le Collectif" },
   { href: "/artistes", label: "Artistes" },
+  { href: "/oeuvres", label: "Oeuvres" },
   { href: "/expositions", label: "Expositions" },
   { href: "/nous-rejoindre", label: "Rejoindre" },
   { href: "/contact", label: "Contact" },

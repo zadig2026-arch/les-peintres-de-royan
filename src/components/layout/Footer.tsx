@@ -19,6 +19,7 @@ export default function Footer() {
             <p className="text-xs uppercase tracking-[0.15em] text-stone mb-2">Navigation</p>
             <Link href="/le-collectif" className="text-charcoal-light hover:text-sienna transition-colors">Le Collectif</Link>
             <Link href="/artistes" className="text-charcoal-light hover:text-sienna transition-colors">Artistes</Link>
+            <Link href="/oeuvres" className="text-charcoal-light hover:text-sienna transition-colors">Oeuvres</Link>
             <Link href="/expositions" className="text-charcoal-light hover:text-sienna transition-colors">Expositions</Link>
             <Link href="/nous-rejoindre" className="text-charcoal-light hover:text-sienna transition-colors">Nous Rejoindre</Link>
           </nav>
