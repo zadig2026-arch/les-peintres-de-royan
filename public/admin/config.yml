@@ -1,0 +1,123 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: "fr"
+
+media_folder: "public/images"
+public_folder: "/images"
+
+publish_mode: editorial_workflow
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: "artistes"
+    label: "Artistes"
+    label_singular: "Artiste"
+    folder: "content/artistes"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{nom}} — {{role}}"
+    sortable_fields: ["ordre", "nom"]
+    fields:
+      - { label: "Nom", name: "nom", widget: "string" }
+      - { label: "Identifiant URL", name: "slug", widget: "string", hint: "Ex: catherine-delcan (minuscules, tirets, sans accents)" }
+      - { label: "Rôle", name: "role", widget: "string", required: false, default: "Membre" }
+      - { label: "Portrait", name: "portrait", widget: "image", required: false }
+      - { label: "Biographie", name: "bio", widget: "text" }
+      - label: "Techniques"
+        name: "techniques"
+        widget: "list"
+        field: { label: "Technique", name: "technique", widget: "string" }
+      - { label: "Site web", name: "site_web", widget: "string", required: false }
+      - { label: "Instagram", name: "instagram", widget: "string", required: false }
+      - { label: "Ordre d'affichage", name: "ordre", widget: "number", default: 99 }
+      - { label: "Visible sur le site", name: "visible", widget: "boolean", default: true }
+      - label: "Oeuvres"
+        name: "oeuvres"
+        widget: "list"
+        summary: "{{fields.titre}} ({{fields.annee}})"
+        fields:
+          - { label: "Titre", name: "titre", widget: "string" }
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Année", name: "annee", widget: "string", required: false }
+          - { label: "Technique", name: "technique", widget: "string", required: false }
+          - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+
+  - name: "expositions"
+    label: "Expositions"
+    label_singular: "Exposition"
+    folder: "content/expositions"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{titre}} — {{date_debut}}"
+    sortable_fields: ["date_debut", "titre"]
+    fields:
+      - { label: "Titre", name: "titre", widget: "string" }
+      - { label: "Identifiant URL", name: "slug", widget: "string" }
+      - { label: "Lieu", name: "lieu", widget: "string" }
+      - { label: "Date de début", name: "date_debut", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Date de fin", name: "date_fin", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Horaires", name: "horaires", widget: "string" }
+      - label: "Statut"
+        name: "statut"
+        widget: "select"
+        options:
+          - { label: "À venir", value: "a-venir" }
+          - { label: "En cours", value: "en-cours" }
+          - { label: "Passée", value: "passee" }
+        hint: "Le statut est calculé automatiquement d'après les dates. Ce champ sert de secours."
+      - { label: "Entrée libre", name: "entree_libre", widget: "boolean", default: true }
+      - { label: "Affiche / Image principale", name: "image_principale", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - label: "Photos de l'exposition"
+        name: "photos_galerie"
+        widget: "list"
+        field: { label: "Photo", name: "photo", widget: "image" }
+        required: false
+      - { label: "Visible", name: "visible", widget: "boolean", default: true }
+
+  - name: "pages"
+    label: "Pages du site"
+    files:
+      - label: "Accueil"
+        name: "accueil"
+        file: "content/pages/accueil.md"
+        fields:
+          - { label: "Titre du hero", name: "hero_titre", widget: "string" }
+          - { label: "Sous-titre", name: "hero_sous_titre", widget: "string" }
+          - { label: "Image du hero", name: "hero_image", widget: "image" }
+          - { label: "Texte de présentation", name: "section_presentation", widget: "markdown" }
+
+      - label: "Le Collectif"
+        name: "collectif"
+        file: "content/pages/collectif.md"
+        fields:
+          - { label: "Titre", name: "titre", widget: "string" }
+          - { label: "Histoire", name: "histoire", widget: "markdown" }
+          - { label: "Philosophie", name: "philosophie", widget: "markdown" }
+          - { label: "Photo de groupe", name: "image_groupe", widget: "image", required: false }
+
+      - label: "Nous Rejoindre"
+        name: "nous-rejoindre"
+        file: "content/pages/nous-rejoindre.md"
+        fields:
+          - { label: "Titre", name: "titre", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - { label: "Cotisation annuelle (€)", name: "cotisation", widget: "string" }
+          - { label: "Processus d'adhésion", name: "processus", widget: "markdown" }
+
+      - label: "Contact"
+        name: "contact"
+        file: "content/pages/contact.md"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Téléphone", name: "telephone", widget: "string" }
+          - { label: "Adresse", name: "adresse", widget: "text" }
+          - { label: "Lien Facebook", name: "facebook", widget: "string", required: false }
+          - { label: "Lien Instagram", name: "instagram", widget: "string", required: false }
