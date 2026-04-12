@@ -21,12 +21,12 @@ export default function ExhibitionCard({ expo }: { expo: Exposition }) {
       href={`/expositions/${expo.slug}`}
       className="group block"
     >
-      <div className="aspect-[4/3] rounded-sm overflow-hidden bg-stone/10 mb-5">
+      <div className="aspect-[3/4] rounded-sm overflow-hidden bg-stone/10 mb-5">
         {expo.image_principale ? (
           <img
             src={expo.image_principale}
             alt={expo.titre}
-            className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+            className="w-full h-full object-contain bg-stone/5 group-hover:opacity-90 transition-opacity"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cream to-linen">
