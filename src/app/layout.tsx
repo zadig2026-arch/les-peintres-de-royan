@@ -29,6 +29,20 @@ export const metadata: Metadata = {
     icon: "/images/site/logo-pr.png",
     apple: "/images/site/logo-pr.png",
   },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Les Peintres de Royan",
+    title: "Les Peintres de Royan — Collectif d'art contemporain",
+    description:
+      "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Les Peintres de Royan — Collectif d'art contemporain",
+    description:
+      "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+  },
 };
 
 export default function RootLayout({
@@ -42,6 +56,29 @@ export default function RootLayout({
       className={`${libreBaskerville.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Les Peintres de Royan",
+              url: "https://lespeintresderoyan.fr",
+              logo: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
+              description:
+                "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Royan",
+                addressRegion: "Charente-Maritime",
+                addressCountry: "FR",
+              },
+              sameAs: [
+                "https://www.facebook.com/peintresderoyan/",
+              ],
+            }),
+          }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
