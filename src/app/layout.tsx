@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
   metadataBase: new URL("https://lespeintresderoyan.fr"),
   icons: {
-    icon: "/images/site/logo-pr.jpg",
-    apple: "/images/site/logo-pr.jpg",
+    icon: "/images/site/logo-pr.png",
+    apple: "/images/site/logo-pr.png",
   },
 };
 
