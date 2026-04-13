@@ -2,7 +2,7 @@
 nom: Philippe Humblot
 slug: philippe-humblot
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/philippe-humblot.jpg'
 bio: Philippe Humblot est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

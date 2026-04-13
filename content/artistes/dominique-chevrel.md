@@ -2,7 +2,7 @@
 nom: Dominique Chevrel
 slug: dominique-chevrel
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/dominique-chevrel.jpg'
 bio: >-
   Dominique est un membre actif du collectif, impliqué dans l'organisation des
   expositions et la vie de l'association.

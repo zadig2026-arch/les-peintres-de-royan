@@ -2,7 +2,7 @@
 nom: Odile Naulin
 slug: odile-naulin
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/odile-naulin.jpg'
 bio: >-
   Odile peint des paysages atmosphériques où le ciel et la mer se confondent.
   Ses toiles capturent la lumière changeante du littoral atlantique avec une

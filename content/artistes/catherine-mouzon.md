@@ -2,7 +2,7 @@
 nom: Catherine Mouzon
 slug: catherine-mouzon
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/catherine-mouzon.jpg'
 bio: Catherine Mouzon est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

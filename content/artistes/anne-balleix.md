@@ -2,7 +2,7 @@
 nom: Anne Balleix
 slug: anne-balleix
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/anne-balleix.jpg'
 bio: Anne Balleix est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture
