@@ -6,6 +6,11 @@ export interface Oeuvre {
   dimensions?: string;
 }
 
+export interface OeuvreFichier extends Oeuvre {
+  artiste_slug: string;
+  slug: string;
+}
+
 export interface Artiste {
   nom: string;
   slug: string;

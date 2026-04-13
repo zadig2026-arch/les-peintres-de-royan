@@ -48,6 +48,30 @@ collections:
           - { label: "Technique", name: "technique", widget: "string", required: false }
           - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
 
+  - name: "oeuvres"
+    label: "Oeuvres"
+    label_singular: "Oeuvre"
+    folder: "content/oeuvres"
+    create: true
+    delete: true
+    slug: "{{artiste_slug}}-{{slug}}"
+    summary: "{{titre}} — {{artiste_slug}}"
+    sortable_fields: ["titre", "artiste_slug"]
+    fields:
+      - label: "Artiste"
+        name: "artiste_slug"
+        widget: "relation"
+        collection: "artistes"
+        search_fields: ["nom"]
+        value_field: "slug"
+        display_fields: ["nom"]
+      - { label: "Titre", name: "titre", widget: "string" }
+      - { label: "Identifiant URL", name: "slug", widget: "string", hint: "Ex: paysage-marin (minuscules, tirets, sans accents)" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Année", name: "annee", widget: "string", required: false }
+      - { label: "Technique", name: "technique", widget: "string", required: false }
+      - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+
   - name: "expositions"
     label: "Expositions"
     label_singular: "Exposition"

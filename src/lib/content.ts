@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import type {
   Artiste,
+  OeuvreFichier,
   Exposition,
   PageAccueil,
   PageCollectif,
@@ -30,16 +31,33 @@ function readSingleFile<T>(filePath: string): T {
   return data as T;
 }
 
+// --- Oeuvres séparées (content/oeuvres/*.md) ---
+
+function getOeuvresFichiers(): OeuvreFichier[] {
+  return readMarkdownFiles<OeuvreFichier>("oeuvres");
+}
+
+function mergeOeuvresIntoArtiste(artiste: Artiste, oeuvresFichiers: OeuvreFichier[]): Artiste {
+  const extra = oeuvresFichiers
+    .filter((o) => o.artiste_slug === artiste.slug)
+    .map(({ artiste_slug, slug, ...oeuvre }) => oeuvre);
+  return { ...artiste, oeuvres: [...artiste.oeuvres, ...extra] };
+}
+
 // --- Artistes ---
 
 export function getAllArtistes(): Artiste[] {
+  const oeuvresFichiers = getOeuvresFichiers();
   return readMarkdownFiles<Artiste>("artistes")
     .filter((a) => a.visible)
+    .map((a) => mergeOeuvresIntoArtiste(a, oeuvresFichiers))
     .sort((a, b) => a.ordre - b.ordre);
 }
 
 export function getArtisteBySlug(slug: string): Artiste | undefined {
-  return readMarkdownFiles<Artiste>("artistes").find((a) => a.slug === slug);
+  const artiste = readMarkdownFiles<Artiste>("artistes").find((a) => a.slug === slug);
+  if (!artiste) return undefined;
+  return mergeOeuvresIntoArtiste(artiste, getOeuvresFichiers());
 }
 
 export function getArtisteSlugs(): string[] {
