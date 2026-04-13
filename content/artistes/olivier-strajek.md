@@ -2,7 +2,7 @@
 nom: Olivier Strajek
 slug: olivier-strajek
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/olivier-strajek.jpg'
 bio: >-
   Olivier développe une peinture figurative aux textures minérales et aux
   compositions surréalistes.

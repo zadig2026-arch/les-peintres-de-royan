@@ -12,7 +12,7 @@ export default function ArtistesPage() {
   const artistes = getAllArtistes();
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-20">
+    <div className="max-w-6xl mx-auto px-6 py-20">
       <h1 className="font-serif text-4xl sm:text-5xl text-charcoal mb-3">
         Les Artistes
       </h1>
@@ -20,13 +20,29 @@ export default function ArtistesPage() {
         {artistes.length} artistes contemporains
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {artistes.map((a) => (
           <Link
             key={a.slug}
             href={`/artistes/${a.slug}`}
-            className="group py-5 border-b border-stone/15 hover:border-sienna transition-colors"
+            className="group block"
           >
+            <div className="aspect-[4/3] relative overflow-hidden bg-stone/10 mb-4">
+              {a.portrait ? (
+                <img
+                  src={a.portrait}
+                  alt={`Oeuvre de ${a.nom}`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="font-serif text-3xl text-stone/30">
+                    {a.nom.split(" ").map((n) => n[0]).join("")}
+                  </span>
+                </div>
+              )}
+            </div>
             <h2 className="font-serif text-xl text-charcoal group-hover:text-sienna transition-colors">
               {a.nom}
             </h2>

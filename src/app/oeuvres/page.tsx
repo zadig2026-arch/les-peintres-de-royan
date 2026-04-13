@@ -37,7 +37,7 @@ export default function OeuvresPage() {
                 <img
                   src={oeuvre.image}
                   alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
-                  className="w-full hover:opacity-90 transition-opacity"
+                  className="w-full transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>

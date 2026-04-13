@@ -86,12 +86,11 @@ export default function LeCollectif() {
 
       {/* Chiffres */}
       <section className="border-y border-stone/15 py-16">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        <div className="max-w-3xl mx-auto px-6 grid grid-cols-3 gap-8 text-center">
           {[
             { value: "2015", label: "Fondation" },
             { value: "23", label: "Artistes" },
             { value: "6", label: "Expositions / an" },
-            { value: "20 €", label: "Cotisation" },
           ].map((c) => (
             <div key={c.label}>
               <p className="font-serif text-3xl text-charcoal">{c.value}</p>

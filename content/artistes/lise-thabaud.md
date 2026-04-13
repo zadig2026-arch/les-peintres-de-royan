@@ -2,7 +2,7 @@
 nom: Lise Thabaud
 slug: lise-thabaud
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/lise-thabaud.jpg'
 bio: Lise Thabaud est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

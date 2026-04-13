@@ -2,7 +2,7 @@
 nom: Chantal Bianco
 slug: chantal-bianco
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/chantal-bianco.jpg'
 bio: Chantal Bianco est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

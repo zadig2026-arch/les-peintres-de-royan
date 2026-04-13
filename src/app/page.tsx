@@ -6,16 +6,16 @@ export default function Accueil() {
   const expos = getExpositionsActuelles();
   const artistes = getAllArtistes();
 
-  // Pick a few featured artworks for the gallery strip (HD Facebook photos)
+  // Strip artworks — different artists from the hero mosaic for variety
   const oeuvres = [
-    { src: "/images/artistes/lydia-leas/oeuvre-1.jpg", nom: "Lydia Leas" },
-    { src: "/images/artistes/astrid-van-der-weerd/oeuvre-1.jpg", nom: "Astrid Van der Weerd" },
-    { src: "/images/artistes/catherine-delcan/oeuvre-1.jpg", nom: "Catherine Delcan" },
-    { src: "/images/artistes/odile-naulin/oeuvre-1.jpg", nom: "Odile Naulin" },
-    { src: "/images/artistes/nicole-lesueur/oeuvre-1.jpg", nom: "Nicole Lesueur" },
-    { src: "/images/artistes/martine-cavalec/oeuvre-1.jpg", nom: "Martine Cavalec" },
-    { src: "/images/artistes/lise-thabaud/oeuvre-1.jpg", nom: "Lise Thabaud" },
-    { src: "/images/artistes/milah-hernandez/oeuvre-1.jpg", nom: "Milah Hernandez" },
+    { src: "/images/artistes/portraits/nicole-lesueur.jpg", nom: "Nicole Lesueur" },
+    { src: "/images/artistes/portraits/milah-hernandez.jpg", nom: "Milah Hernandez" },
+    { src: "/images/artistes/portraits/anne-balleix.jpg", nom: "Anne Balleix" },
+    { src: "/images/artistes/portraits/chantal-robin.jpg", nom: "Chantal Robin" },
+    { src: "/images/artistes/portraits/philippe-humblot.jpg", nom: "Philippe Humblot" },
+    { src: "/images/artistes/portraits/jacqueline-rocheteau.jpg", nom: "Jacqueline Rocheteau" },
+    { src: "/images/artistes/portraits/chantal-morton.jpg", nom: "Chantal Morton" },
+    { src: "/images/artistes/portraits/lydia-leas.jpg", nom: "Lydia Leas" },
   ];
 
   return (
@@ -53,18 +53,18 @@ export default function Accueil() {
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="aspect-[3/4] rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/astrid-van-der-weerd/oeuvre-1.jpg" alt="Astrid Van der Weerd" className="w-full h-full object-cover" />
+                <img src="/images/artistes/portraits/catherine-delcan.jpg" alt="Catherine Delcan" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-square rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/lydia-leas/oeuvre-1.jpg" alt="Lydia Leas" className="w-full h-full object-cover" />
+                <img src="/images/artistes/portraits/claudine-mingot.jpg" alt="Claudine Mingot" className="w-full h-full object-cover" />
               </div>
             </div>
             <div className="space-y-3 pt-8">
               <div className="aspect-square rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/catherine-delcan/oeuvre-1.jpg" alt="Catherine Delcan" className="w-full h-full object-cover" />
+                <img src="/images/artistes/portraits/astrid-van-der-weerd.jpg" alt="Astrid Van der Weerd" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-[3/4] rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/odile-naulin/oeuvre-1.jpg" alt="Odile Naulin" className="w-full h-full object-cover" />
+                <img src="/images/artistes/portraits/odile-naulin.jpg" alt="Odile Naulin" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -139,10 +139,10 @@ export default function Accueil() {
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-8">
           <Link
-            href="/artistes"
+            href="/oeuvres"
             className="text-sienna hover:text-sienna-dark text-sm tracking-wide uppercase font-medium"
           >
-            Voir tous les artistes &rarr;
+            Voir toutes les oeuvres &rarr;
           </Link>
         </div>
       </section>

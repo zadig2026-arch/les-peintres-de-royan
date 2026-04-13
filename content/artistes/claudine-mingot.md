@@ -2,7 +2,7 @@
 nom: Claudine Mingot
 slug: claudine-mingot
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/claudine-mingot.jpg'
 bio: Claudine Mingot est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

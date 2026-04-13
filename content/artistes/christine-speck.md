@@ -2,7 +2,7 @@
 nom: Christine Speck
 slug: christine-speck
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/christine-speck.jpg'
 bio: Christine Speck est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture

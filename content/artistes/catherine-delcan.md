@@ -2,7 +2,7 @@
 nom: Catherine Delcan
 slug: catherine-delcan
 role: Fondatrice & Présidente
-portrait: ''
+portrait: '/images/artistes/portraits/catherine-delcan.jpg'
 bio: >-
   Ancienne professeure de lettres, Catherine fonde le collectif Les Peintres de
   Royan en 2015. Elle expose localement à Royan et sa région, ainsi que dans le

@@ -2,7 +2,7 @@
 nom: Chantal Robin
 slug: chantal-robin
 role: Membre
-portrait: ''
+portrait: '/images/artistes/portraits/chantal-robin.jpg'
 bio: Chantal Robin est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture
