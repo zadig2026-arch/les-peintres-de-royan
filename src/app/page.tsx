@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/content";
-import ExhibitionCard from "@/components/ui/ExhibitionCard";
 
 export default function Accueil() {
   const page = getPageAccueil();
@@ -72,18 +71,43 @@ export default function Accueil() {
         </div>
       </section>
 
-      {/* Next exhibition — asymmetric layout */}
+      {/* Expo banner */}
       {expos.length > 0 && (
-        <section className="bg-cream py-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-stone mb-8">
-              Prochainement
+        <section className="bg-[#2C2420] text-white/90">
+          <div className="max-w-7xl mx-auto px-6 py-10 sm:py-14">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-sienna mb-6">
+              {expos.length === 1 ? "Prochaine exposition" : "Prochaines expositions"}
             </p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {expos.slice(0, 2).map((expo) => (
-                <ExhibitionCard key={expo.slug} expo={expo} />
+            <div className="space-y-6">
+              {expos.slice(0, 3).map((expo) => (
+                <Link
+                  key={expo.slug}
+                  href={`/expositions/${expo.slug}`}
+                  className="group block sm:flex sm:items-baseline sm:gap-8 py-4 border-b border-white/10 last:border-0 hover:border-sienna/30 transition-colors"
+                >
+                  <h3 className="font-serif text-xl sm:text-2xl group-hover:text-sienna transition-colors">
+                    {expo.titre}
+                  </h3>
+                  <div className="flex flex-wrap gap-x-6 gap-y-1 mt-2 sm:mt-0 text-sm text-white/60">
+                    <span>
+                      {new Date(expo.date_debut).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                      {" — "}
+                      {new Date(expo.date_fin).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" })}
+                    </span>
+                    <span>{expo.lieu.split(",")[0]}</span>
+                    {expo.entree_libre && <span className="text-sienna">Entrée libre</span>}
+                  </div>
+                </Link>
               ))}
             </div>
+            {expos.length > 3 && (
+              <Link
+                href="/expositions"
+                className="inline-block mt-8 text-sienna text-sm tracking-wide uppercase font-medium hover:text-white transition-colors"
+              >
+                Toutes les expositions &rarr;
+              </Link>
+            )}
           </div>
         </section>
       )}
