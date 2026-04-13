@@ -1,13 +1,13 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: zadig2026-arch/les-peintres-de-royan
   branch: main
+  base_url: https://sveltia-cms-auth.zadig2026.workers.dev
 
 locale: "fr"
 
 media_folder: "public/images"
 public_folder: "/images"
-
-publish_mode: editorial_workflow
 
 slug:
   encoding: "ascii"
