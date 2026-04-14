@@ -2,7 +2,7 @@
 nom: Christine Specq
 slug: christine-specq
 role: Membre
-portrait: ''
+portrait: /images/christine Specq2026.JPG
 bio: Christine Speck est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture contemporaine /huile
