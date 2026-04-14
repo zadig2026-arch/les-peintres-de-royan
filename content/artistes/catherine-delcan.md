@@ -22,4 +22,9 @@ oeuvres:
     annee: ''
     technique: huile sur toile
     dimensions: 100X100
+  - titre: Royan-le Grille-pain
+    image: /images/Catherine Delcan ROYAN100X100.jpeg
+    annee: ''
+    technique: huile sur toile
+    dimensions: 100X100
 ---
