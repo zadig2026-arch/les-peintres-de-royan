@@ -17,4 +17,9 @@ oeuvres:
     annee: ''
     technique: huile sur toile
     dimensions: 100X100
+  - titre: Iris 1 (série)
+    image: /images/Catherine DelcanIris1100X100.jpeg
+    annee: ''
+    technique: huile sur toile
+    dimensions: 100X100
 ---
