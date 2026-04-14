@@ -26,4 +26,9 @@ oeuvres:
     annee: ''
     technique: ''
     dimensions: ''
+  - titre: Danseurs 2
+    image: /images/Christine SpecqLumii_20250421_114359421.jpg
+    annee: ''
+    technique: ''
+    dimensions: ''
 ---
