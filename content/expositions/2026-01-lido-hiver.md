@@ -9,6 +9,7 @@ statut: "passee"
 entree_libre: true
 image_principale: "/images/expositions/cover-lido-jan-2026.jpg"
 description: "17 artistes confirmés aux sensibilités et techniques variées exposent dans la salle VIP du cinéma Le Lido. Prolongation jusqu'au 18 janvier suite au succès de l'événement."
-photos_galerie: []
+photos_galerie:
+  - "/images/expositions/expo-lido-jan-2026.jpg"
 visible: true
 ---

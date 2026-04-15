@@ -82,6 +82,27 @@ export default function LeCollectif() {
             className="w-full h-full object-cover"
           />
         </div>
+
+        {/* Nos ateliers */}
+        <div className="mb-20">
+          <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-6">Nos ateliers</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 -mx-6 sm:mx-0">
+            <div className="aspect-[4/3] rounded-sm overflow-hidden bg-cream">
+              <img
+                src="/images/association/nos-ateliers-1.jpg"
+                alt="Atelier des Peintres de Royan"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-sm overflow-hidden bg-cream">
+              <img
+                src="/images/association/nos-ateliers-2.jpg"
+                alt="Atelier des Peintres de Royan"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Chiffres */}
