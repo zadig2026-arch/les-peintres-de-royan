@@ -2,6 +2,7 @@ import { getArtisteBySlug, getArtisteSlugs, grouperOeuvresParSerie } from "@/lib
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import OeuvresGallery from "@/components/ui/OeuvresGallery";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -106,28 +107,7 @@ export default async function ArtistePage({ params }: Props) {
           {artiste.oeuvres.length > 0 ? (
             <>
               <h2 className="text-xs uppercase tracking-[0.2em] text-stone mb-8">Oeuvres</h2>
-              {grouperOeuvresParSerie(artiste.oeuvres).map((section, si) => (
-                <div key={si} className={si > 0 ? "mt-12" : ""}>
-                  {section.label && (
-                    <p className="text-xs uppercase tracking-[0.15em] text-sienna mb-5">
-                      {section.label}
-                    </p>
-                  )}
-                  <div className="columns-2 gap-5 space-y-5">
-                    {section.oeuvres.map((oeuvre, i) => (
-                      <div key={i} className="break-inside-avoid">
-                        <div className="rounded-sm overflow-hidden bg-cream">
-                          <img src={oeuvre.image} alt={oeuvre.titre} className="w-full hover:opacity-90 transition-opacity" />
-                        </div>
-                        <p className="text-sm text-charcoal mt-2">{oeuvre.titre}</p>
-                        <p className="text-xs text-stone">
-                          {[oeuvre.technique, oeuvre.dimensions, oeuvre.annee].filter(Boolean).join(" — ")}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+              <OeuvresGallery sections={grouperOeuvresParSerie(artiste.oeuvres)} />
             </>
           ) : (
             <div className="border border-stone/15 rounded-sm p-12 text-center">
