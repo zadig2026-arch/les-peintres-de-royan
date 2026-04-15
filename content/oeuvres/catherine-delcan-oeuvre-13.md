@@ -5,4 +5,6 @@ slug: oeuvre-13
 image: /images/artistes/catherine-delcan/oeuvre-13.jpg
 dimensions: 90x80 cm
 annee: 2024
+serie: Les Lutteurs
+ordre_serie: 4
 ---

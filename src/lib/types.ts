@@ -4,6 +4,8 @@ export interface Oeuvre {
   annee?: string;
   technique?: string;
   dimensions?: string;
+  serie?: string;
+  ordre_serie?: number;
 }
 
 export interface OeuvreFichier extends Oeuvre {

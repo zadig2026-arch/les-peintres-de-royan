@@ -77,19 +77,46 @@ export default async function ArtistePage({ params }: Props) {
           {artiste.oeuvres.length > 0 ? (
             <>
               <h2 className="text-xs uppercase tracking-[0.2em] text-stone mb-8">Oeuvres</h2>
-              <div className="columns-2 gap-5 space-y-5">
-                {artiste.oeuvres.map((oeuvre, i) => (
-                  <div key={i} className="break-inside-avoid">
-                    <div className="rounded-sm overflow-hidden bg-cream">
-                      <img src={oeuvre.image} alt={oeuvre.titre} className="w-full hover:opacity-90 transition-opacity" />
+              {(() => {
+                const seriesMap = new Map<string, typeof artiste.oeuvres>();
+                const sansSerie: typeof artiste.oeuvres = [];
+                artiste.oeuvres.forEach((o) => {
+                  if (o.serie) {
+                    if (!seriesMap.has(o.serie)) seriesMap.set(o.serie, []);
+                    seriesMap.get(o.serie)!.push(o);
+                  } else {
+                    sansSerie.push(o);
+                  }
+                });
+                seriesMap.forEach((oeuvres) =>
+                  oeuvres.sort((a, b) => (a.ordre_serie ?? 99) - (b.ordre_serie ?? 99))
+                );
+                const sections: { label: string | null; oeuvres: typeof artiste.oeuvres }[] = [];
+                seriesMap.forEach((oeuvres, label) => sections.push({ label, oeuvres }));
+                if (sansSerie.length > 0) sections.push({ label: null, oeuvres: sansSerie });
+                return sections.map((section, si) => (
+                  <div key={si} className={si > 0 ? "mt-12" : ""}>
+                    {section.label && (
+                      <p className="text-xs uppercase tracking-[0.15em] text-sienna mb-5">
+                        {section.label}
+                      </p>
+                    )}
+                    <div className="columns-2 gap-5 space-y-5">
+                      {section.oeuvres.map((oeuvre, i) => (
+                        <div key={i} className="break-inside-avoid">
+                          <div className="rounded-sm overflow-hidden bg-cream">
+                            <img src={oeuvre.image} alt={oeuvre.titre} className="w-full hover:opacity-90 transition-opacity" />
+                          </div>
+                          <p className="text-sm text-charcoal mt-2">{oeuvre.titre}</p>
+                          <p className="text-xs text-stone">
+                            {[oeuvre.technique, oeuvre.dimensions, oeuvre.annee].filter(Boolean).join(" — ")}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                    <p className="text-sm text-charcoal mt-2">{oeuvre.titre}</p>
-                    <p className="text-xs text-stone">
-                      {[oeuvre.technique, oeuvre.dimensions, oeuvre.annee].filter(Boolean).join(" — ")}
-                    </p>
                   </div>
-                ))}
-              </div>
+                ));
+              })()}
             </>
           ) : (
             <div className="border border-stone/15 rounded-sm p-12 text-center">

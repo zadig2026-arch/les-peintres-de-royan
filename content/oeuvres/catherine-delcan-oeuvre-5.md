@@ -5,4 +5,6 @@ slug: oeuvre-5
 image: /images/artistes/catherine-delcan/oeuvre-5.jpg
 dimensions: 200x80 cm
 annee: 2026
+serie: Arbres
+ordre_serie: 2
 ---

@@ -5,4 +5,6 @@ slug: oeuvre-4
 image: /images/artistes/catherine-delcan/oeuvre-4.jpg
 dimensions: 200x240 cm
 annee: 2026
+serie: Arbres
+ordre_serie: 4
 ---

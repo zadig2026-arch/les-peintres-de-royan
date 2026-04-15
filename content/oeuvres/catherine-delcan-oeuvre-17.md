@@ -5,4 +5,6 @@ slug: oeuvre-17
 image: /images/artistes/catherine-delcan/oeuvre-17.jpg
 dimensions: 100x100 cm
 annee: 2025
+serie: Portraits
+ordre_serie: 4
 ---
