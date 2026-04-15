@@ -36,12 +36,21 @@ export const metadata: Metadata = {
     title: "Les Peintres de Royan — Collectif d'art contemporain",
     description:
       "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+    images: [
+      {
+        url: "/images/site/logo-pr.png",
+        width: 800,
+        height: 800,
+        alt: "Les Peintres de Royan — Collectif d'art contemporain",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Les Peintres de Royan — Collectif d'art contemporain",
     description:
       "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+    images: ["/images/site/logo-pr.png"],
   },
 };
 

@@ -13,9 +13,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const expo = getExpositionBySlug(slug);
   if (!expo) return {};
+  const description = `${expo.titre} — ${expo.lieu}. Exposition du collectif Les Peintres de Royan. ${expo.entree_libre ? "Entrée libre." : ""}`.slice(0, 160);
   return {
     title: expo.titre,
-    description: expo.description.slice(0, 160),
+    description,
+    openGraph: {
+      title: `${expo.titre} — Les Peintres de Royan`,
+      description,
+      ...(expo.image_principale && {
+        images: [{ url: expo.image_principale, alt: expo.titre }],
+      }),
+    },
   };
 }
 
@@ -40,8 +48,40 @@ export default async function ExpositionPage({ params }: Props) {
 
   const statut = statutConfig[expo.statut] || statutConfig.passee;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: expo.titre,
+    description: expo.description,
+    startDate: expo.date_debut,
+    endDate: expo.date_fin,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    ...(expo.image_principale && { image: `https://lespeintresderoyan.fr${expo.image_principale}` }),
+    location: {
+      "@type": "Place",
+      name: expo.lieu,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Royan",
+        addressRegion: "Charente-Maritime",
+        addressCountry: "FR",
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Les Peintres de Royan",
+      url: "https://lespeintresderoyan.fr",
+    },
+    isAccessibleForFree: expo.entree_libre,
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/expositions"
         className="inline-flex items-center gap-2 text-sm text-terre-light hover:text-atlantique transition-colors mb-10 group"

@@ -13,9 +13,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const artiste = getArtisteBySlug(slug);
   if (!artiste) return {};
+  const techniques = artiste.techniques.join(", ");
+  const description = `${artiste.nom}, artiste membre des Peintres de Royan. ${techniques}. Expositions en Charente-Maritime.`.slice(0, 160);
   return {
     title: artiste.nom,
-    description: artiste.bio.slice(0, 160),
+    description,
+    openGraph: {
+      title: `${artiste.nom} — Les Peintres de Royan`,
+      description,
+      ...(artiste.portrait && {
+        images: [{ url: artiste.portrait, alt: artiste.nom }],
+      }),
+    },
   };
 }
 
@@ -24,8 +33,28 @@ export default async function ArtistePage({ params }: Props) {
   const artiste = getArtisteBySlug(slug);
   if (!artiste) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: artiste.nom,
+    description: artiste.bio,
+    url: `https://lespeintresderoyan.fr/artistes/${artiste.slug}`,
+    ...(artiste.portrait && { image: `https://lespeintresderoyan.fr${artiste.portrait}` }),
+    ...(artiste.site_web && { sameAs: [artiste.site_web] }),
+    jobTitle: "Artiste",
+    memberOf: {
+      "@type": "Organization",
+      name: "Les Peintres de Royan",
+      url: "https://lespeintresderoyan.fr",
+    },
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/artistes"
         className="text-sm text-stone hover:text-sienna transition-colors tracking-wide uppercase"

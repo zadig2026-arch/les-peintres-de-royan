@@ -1,0 +1,16 @@
+{
+  "name": "Les Peintres de Royan",
+  "short_name": "Peintres Royan",
+  "description": "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a1a1a",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/site/logo-pr.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
