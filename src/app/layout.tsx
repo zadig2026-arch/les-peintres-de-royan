@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s — Les Peintres de Royan",
   },
   description:
-    "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+    "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
   metadataBase: new URL("https://lespeintresderoyan.fr"),
   icons: {
     icon: "/images/site/logo-pr.png",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Les Peintres de Royan",
     title: "Les Peintres de Royan — Collectif d'art contemporain",
     description:
-      "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+      "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
     images: [
       {
         url: "/images/site/logo-pr.png",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Les Peintres de Royan — Collectif d'art contemporain",
     description:
-      "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+      "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
     images: ["/images/site/logo-pr.png"],
   },
 };
@@ -75,7 +75,7 @@ export default function RootLayout({
               url: "https://lespeintresderoyan.fr",
               logo: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
               description:
-                "Collectif de 23 artistes contemporains à Royan. Peinture, dessin, gravure, sculpture. Expositions en Charente-Maritime.",
+                "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Royan",
