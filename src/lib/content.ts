@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import type {
   Artiste,
+  Oeuvre,
   OeuvreFichier,
   Exposition,
   PageAccueil,
@@ -108,6 +109,73 @@ export function getExpositionsActuelles(): Exposition[] {
 
 export function getExpositionsPassees(): Exposition[] {
   return getAllExpositions().filter((e) => e.statut === "passee");
+}
+
+// --- Regroupement automatique par série ---
+
+export interface OeuvreSection {
+  label: string | null;
+  oeuvres: Oeuvre[];
+}
+
+/**
+ * Extrait le préfixe d'un titre en retirant les chiffres/numéros finaux.
+ * "Arbre 1" → "Arbre", "Les Lutteurs 2" → "Les Lutteurs", "Zadig 3" → "Zadig"
+ * Ignore les titres génériques ("Oeuvre 1") et les titres sans numéro.
+ */
+function extrairePrefixe(titre: string): string | null {
+  // Ignorer les titres génériques
+  if (/^Oeuvre \d+$/i.test(titre)) return null;
+  // Extraire le préfixe si le titre finit par un espace + chiffre(s)
+  const match = titre.match(/^(.+?)\s+\d+$/);
+  return match ? match[1] : null;
+}
+
+export function grouperOeuvresParSerie(oeuvres: Oeuvre[]): OeuvreSection[] {
+  const seriesExplicites = new Map<string, Oeuvre[]>();
+  const sansSerieExplicite: Oeuvre[] = [];
+
+  // 1. Séparer les oeuvres avec série explicite
+  oeuvres.forEach((o) => {
+    if (o.serie) {
+      if (!seriesExplicites.has(o.serie)) seriesExplicites.set(o.serie, []);
+      seriesExplicites.get(o.serie)!.push(o);
+    } else {
+      sansSerieExplicite.push(o);
+    }
+  });
+
+  // 2. Auto-détecter les séries parmi les oeuvres restantes
+  const prefixCount = new Map<string, number>();
+  sansSerieExplicite.forEach((o) => {
+    const p = extrairePrefixe(o.titre);
+    if (p) prefixCount.set(p, (prefixCount.get(p) ?? 0) + 1);
+  });
+
+  const seriesAuto = new Map<string, Oeuvre[]>();
+  const vraiSansSerie: Oeuvre[] = [];
+
+  sansSerieExplicite.forEach((o) => {
+    const p = extrairePrefixe(o.titre);
+    if (p && (prefixCount.get(p) ?? 0) >= 2) {
+      if (!seriesAuto.has(p)) seriesAuto.set(p, []);
+      seriesAuto.get(p)!.push(o);
+    } else {
+      vraiSansSerie.push(o);
+    }
+  });
+
+  // 3. Trier dans chaque série
+  const sortSerie = (oeuvres: Oeuvre[]) =>
+    oeuvres.sort((a, b) => (a.ordre_serie ?? 99) - (b.ordre_serie ?? 99));
+
+  // 4. Assembler les sections
+  const sections: OeuvreSection[] = [];
+  seriesExplicites.forEach((items, label) => sections.push({ label, oeuvres: sortSerie(items) }));
+  seriesAuto.forEach((items, label) => sections.push({ label, oeuvres: sortSerie(items) }));
+  if (vraiSansSerie.length > 0) sections.push({ label: null, oeuvres: vraiSansSerie });
+
+  return sections;
 }
 
 // --- Pages ---
