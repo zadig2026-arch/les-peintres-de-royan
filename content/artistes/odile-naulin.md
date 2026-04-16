@@ -9,7 +9,7 @@ techniques:
   - Huile
 site_web: ''
 instagram: ''
-ordre: 1
+ordre: 8
 visible: true
 oeuvres:
   - titre: le Retour
