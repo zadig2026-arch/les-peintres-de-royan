@@ -71,6 +71,8 @@ collections:
       - { label: "Année", name: "annee", widget: "string", required: false }
       - { label: "Technique", name: "technique", widget: "string", required: false }
       - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+      - { label: "Série", name: "serie", widget: "string", required: false, hint: "Ex: Lieux abandonnés, Portraits" }
+      - { label: "Ordre dans la série", name: "ordre_serie", widget: "number", required: false, hint: "Position dans la série (1, 2, 3...)" }
 
   - name: "expositions"
     label: "Expositions"
