@@ -26,31 +26,32 @@ export default function OeuvresPage() {
         Oeuvres
       </h1>
       <p className="text-stone text-lg mb-16">
-        {toutesOeuvres.length} oeuvres de {artistes.filter((a) => a.oeuvres.length > 0).length} artistes
+        {toutesOeuvres.length} oeuvres &middot; {artistes.filter((a) => a.oeuvres.length > 0).length} artistes
       </p>
 
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+      <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-1.5">
         {toutesOeuvres.map((oeuvre, i) => (
-          <div key={i} className="break-inside-avoid group">
-            <Link href={`/artistes/${oeuvre.artisteSlug}`}>
-              <div className="rounded-sm overflow-hidden bg-cream">
-                <img
-                  src={oeuvre.image}
-                  alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
-                  className="w-full transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <div className="mt-2 mb-1">
-                <p className="text-sm text-charcoal group-hover:text-sienna transition-colors">
+          <Link
+            key={i}
+            href={`/artistes/${oeuvre.artisteSlug}`}
+            className="group relative block mb-1.5 break-inside-avoid rounded-sm overflow-hidden bg-cream"
+          >
+            <img
+              src={oeuvre.image}
+              alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
+              className="w-full transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+              <div>
+                <p className="text-white text-sm font-serif leading-tight">
                   {oeuvre.artisteNom}
                 </p>
-                {oeuvre.technique && (
-                  <p className="text-xs text-stone">{oeuvre.technique}</p>
+                {oeuvre.titre && oeuvre.titre !== `Oeuvre ${i + 1}` && (
+                  <p className="text-white/70 text-xs mt-0.5">{oeuvre.titre}</p>
                 )}
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
