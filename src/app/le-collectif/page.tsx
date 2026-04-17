@@ -47,11 +47,11 @@ export default function LeCollectif() {
         </div>
 
         {/* Photo groupe — expo Cinéma Le Lido */}
-        <div className="aspect-[16/9] rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
+        <div className="rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
           <img
             src="/images/expositions/groupe-cinema-lido.jpg"
             alt="Les Peintres de Royan exposant au cinéma Le Lido"
-            className="w-full h-full object-cover"
+            className="w-full h-auto"
           />
         </div>
 
