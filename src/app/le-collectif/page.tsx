@@ -9,10 +9,7 @@ export const metadata: Metadata = {
 
 const photos = [
   { src: "/images/expositions/vernissage-salle.jpg", alt: "Vernissage — les artistes et le public dans la salle d'exposition" },
-  { src: "/images/association/artiste-atelier.jpg", alt: "Une artiste du collectif en train de peindre" },
-  { src: "/images/expositions/vernissage-temple.jpg", alt: "Inauguration d'une exposition avec les élus" },
-  { src: "/images/association/membres-jardins.jpg", alt: "Les membres du collectif aux Jardins de la Mer" },
-  { src: "/images/association/membres-jardins-2.jpg", alt: "Convivialité entre les artistes aux Jardins de la Mer" },
+  { src: "/images/expositions/groupe-cinema-lido.jpg", alt: "Les Peintres de Royan exposant au cinéma Le Lido" },
 ];
 
 export default function LeCollectif() {
@@ -49,36 +46,11 @@ export default function LeCollectif() {
           </div>
         </div>
 
-        {/* Photo grid */}
-        <div className="grid grid-cols-2 gap-3 mb-20 -mx-6 sm:mx-0">
-          <div className="row-span-2 rounded-sm overflow-hidden bg-cream">
-            <img
-              src="/images/association/artiste-atelier.jpg"
-              alt="Une artiste du collectif en train de peindre"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-sm overflow-hidden bg-cream">
-            <img
-              src="/images/association/membres-jardins.jpg"
-              alt="Les membres aux Jardins de la Mer"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-sm overflow-hidden bg-cream">
-            <img
-              src="/images/association/membres-jardins-2.jpg"
-              alt="Convivialité entre artistes"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Photo vernissage temple */}
+        {/* Photo groupe — expo Cinéma Le Lido */}
         <div className="aspect-[16/9] rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
           <img
-            src="/images/expositions/vernissage-temple.jpg"
-            alt="Inauguration d'une exposition"
+            src="/images/expositions/groupe-cinema-lido.jpg"
+            alt="Les Peintres de Royan exposant au cinéma Le Lido"
             className="w-full h-full object-cover"
           />
         </div>
