@@ -2,14 +2,18 @@
 nom: Chantal Bianco
 slug: chantal-bianco
 role: Membre
-portrait: '/images/artistes/portraits/chantal-bianco.jpg'
+portrait: /images/artistes/portraits/chantal-bianco.jpg
 bio: Chantal Bianco est membre du collectif Les Peintres de Royan.
 techniques:
   - Peinture
 site_web: ''
-instagram: ''
+instagram: www.instagram.com/c.biancorobin
 ordre: 23
 visible: true
-oeuvres: []
+oeuvres:
+  - titre: Renouveau
+    image: /images/Renouveau 2025 60x50 acrylique et huile.jpg
+    annee: ''
+    technique: ''
+    dimensions: ''
 ---
-
