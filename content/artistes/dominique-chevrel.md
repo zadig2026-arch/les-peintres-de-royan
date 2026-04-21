@@ -2,16 +2,18 @@
 nom: Dominique Chevrel
 slug: dominique-chevrel
 role: Membre
-portrait: '/images/artistes/portraits/dominique-chevrel.jpg'
-bio: >-
-  Dominique est un membre actif du collectif, impliqué dans l'organisation des
-  expositions et la vie de l'association.
+portrait: /images/Famille  70X65 2020.jpg
+bio: Dominique est un membre actif du collectif, impliqué dans l'organisation des expositions et la vie de l'association.
 techniques:
-  - Peinture
+  - huile
 site_web: ''
 instagram: ''
-ordre: 4
+ordre: 8
 visible: true
-oeuvres: []
+oeuvres:
+  - titre: Vaches Devon
+    image: /images/Vaches Devon 70X20 2021.jpg
+    annee: ''
+    technique: ''
+    dimensions: ''
 ---
-
