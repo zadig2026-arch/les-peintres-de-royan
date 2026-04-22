@@ -1,14 +1,6 @@
 import Link from "next/link";
 import type { Exposition } from "@/lib/types";
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 function formatDateShort(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("fr-FR", {
     day: "numeric",

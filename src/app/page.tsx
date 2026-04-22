@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/content";
 
 export default function Accueil() {
@@ -52,19 +53,46 @@ export default function Accueil() {
           {/* Mosaic of artworks */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-3">
-              <div className="aspect-[3/4] rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/portraits/catherine-delcan.jpg" alt="Catherine Delcan" className="w-full h-full object-cover" />
+              <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
+                <Image
+                  src="/images/artistes/portraits/catherine-delcan.jpg"
+                  alt="Portrait de Catherine Delcan, fondatrice du collectif"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="aspect-square rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/portraits/claudine-mingot.jpg" alt="Claudine Mingot" className="w-full h-full object-cover" />
+              <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
+                <Image
+                  src="/images/artistes/portraits/claudine-mingot.jpg"
+                  alt="Portrait de Claudine Mingot"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
             </div>
             <div className="space-y-3 pt-8">
-              <div className="aspect-square rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/portraits/astrid-van-der-weerd.jpg" alt="Astrid Van der Weerd" className="w-full h-full object-cover" />
+              <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
+                <Image
+                  src="/images/artistes/portraits/astrid-van-der-weerd.jpg"
+                  alt="Portrait d'Astrid Van der Weerd"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="aspect-[3/4] rounded-sm overflow-hidden bg-cream">
-                <img src="/images/artistes/portraits/odile-naulin.jpg" alt="Odile Naulin" className="w-full h-full object-cover" />
+              <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
+                <Image
+                  src="/images/artistes/portraits/odile-naulin.jpg"
+                  alt="Portrait d'Odile Naulin"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -126,11 +154,13 @@ export default function Accueil() {
               key={i}
               className="shrink-0 w-[280px] sm:w-[320px] snap-start"
             >
-              <div className="aspect-[3/4] rounded-sm overflow-hidden bg-stone/10">
-                <img
+              <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-stone/10">
+                <Image
                   src={o.src}
-                  alt={o.nom}
-                  className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                  alt={`Portrait de ${o.nom}`}
+                  fill
+                  sizes="320px"
+                  className="object-cover hover:opacity-90 transition-opacity"
                 />
               </div>
               <p className="mt-3 text-sm text-stone">{o.nom}</p>

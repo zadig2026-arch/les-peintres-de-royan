@@ -1,11 +1,11 @@
 import { getPageRejoindre } from "@/lib/content";
-import SectionTitle from "@/components/ui/SectionTitle";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Nous Rejoindre",
   description:
-    "Rejoignez le collectif Les Peintres de Royan. Formulaire de candidature, cotisation et processus d'adhésion.",
+    "Rejoignez le collectif Les Peintres de Royan : processus d'adhésion, cotisation annuelle, pièces à fournir et formulaire de candidature en ligne.",
+  alternates: { canonical: "/nous-rejoindre" },
 };
 
 export default function NousRejoindre() {
@@ -29,18 +29,18 @@ export default function NousRejoindre() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div className="bg-cream rounded-lg p-8">
-          <h3 className="font-serif text-2xl text-charcoal mb-4">
+          <h2 className="font-serif text-2xl text-charcoal mb-4">
             Cotisation annuelle
-          </h3>
+          </h2>
           <p className="text-4xl font-bold text-sienna">
             {page.cotisation} &euro;
           </p>
           <p className="text-sm text-charcoal-light mt-2">par an</p>
         </div>
         <div className="bg-cream rounded-lg p-8">
-          <h3 className="font-serif text-2xl text-charcoal mb-4">
+          <h2 className="font-serif text-2xl text-charcoal mb-4">
             Pièces à fournir
-          </h3>
+          </h2>
           <ul className="text-sm text-charcoal-light space-y-2">
             <li className="flex gap-2">
               <span className="text-ochre shrink-0">&#10003;</span>
@@ -63,9 +63,9 @@ export default function NousRejoindre() {
         </div>
       </div>
 
-      <h3 className="font-serif text-2xl text-charcoal mb-4">
+      <h2 className="font-serif text-2xl text-charcoal mb-4">
         Comment nous rejoindre
-      </h3>
+      </h2>
       <div className="text-charcoal-light leading-relaxed mb-12">
         {page.processus
           .split("\n")
@@ -79,9 +79,9 @@ export default function NousRejoindre() {
 
       {/* Formulaire de candidature */}
       <div className="bg-white border border-stone/15 rounded-xl shadow-sm p-8 md:p-10">
-        <h3 className="font-serif text-2xl text-charcoal mb-2">
+        <h2 className="font-serif text-2xl text-charcoal mb-2">
           Fiche de candidature
-        </h3>
+        </h2>
         <p className="text-sm text-charcoal-light mb-8">
           Remplissez ce formulaire et envoyez-le par email à{" "}
           <a

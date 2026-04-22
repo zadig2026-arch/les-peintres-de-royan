@@ -1,11 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllArtistes } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Artistes",
   description:
-    "Les 23 artistes du collectif Les Peintres de Royan. Peinture contemporaine, dessin, gravure.",
+    "Découvrez les 23 artistes du collectif Les Peintres de Royan : peinture contemporaine, abstraction, figuratif, dessin et gravure en Charente-Maritime.",
+  alternates: { canonical: "/artistes" },
 };
 
 export default function ArtistesPage() {
@@ -29,11 +31,12 @@ export default function ArtistesPage() {
           >
             <div className="aspect-[4/3] relative overflow-hidden bg-stone/10 mb-4">
               {a.portrait ? (
-                <img
+                <Image
                   src={a.portrait}
-                  alt={`Oeuvre de ${a.nom}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
+                  alt={`Portrait de ${a.nom}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">

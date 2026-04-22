@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface OeuvreAvecMeta {
   titre: string;
@@ -103,11 +104,14 @@ export default function OeuvresCarousel({ items }: Props) {
                 href={`/artistes/${oeuvre.artisteSlug}`}
                 className="block"
               >
-                <img
+                <Image
                   src={oeuvre.image}
                   alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
-                  loading="lazy"
-                  className="max-h-[65vh] sm:max-h-[70vh] max-w-full object-contain rounded-sm mx-auto"
+                  width={1200}
+                  height={1600}
+                  sizes="(max-width: 640px) 100vw, 80vw"
+                  priority={i < 2}
+                  className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-sm mx-auto"
                 />
               </Link>
             </div>

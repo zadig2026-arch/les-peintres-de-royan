@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import Script from "next/script";
+import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Libre_Baskerville, DM_Sans } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -10,12 +10,18 @@ const libreBaskerville = Libre_Baskerville({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#F5F0EB",
+};
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +31,8 @@ export const metadata: Metadata = {
   description:
     "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
   metadataBase: new URL("https://lespeintresderoyan.fr"),
+  alternates: { canonical: "/" },
+  manifest: "/manifest.json",
   icons: {
     icon: "/images/site/logo-pr.png",
     apple: "/images/site/logo-pr.png",
@@ -52,6 +60,10 @@ export const metadata: Metadata = {
       "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
     images: ["/images/site/logo-pr.png"],
   },
+  verification: {
+    // Remplacer par le code fourni dans Google Search Console (paramètres → propriété → balise HTML).
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -70,44 +82,46 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": ["Organization", "LocalBusiness"],
+              "@id": "https://lespeintresderoyan.fr/#organization",
               name: "Les Peintres de Royan",
+              alternateName: "Collectif Les Peintres de Royan",
               url: "https://lespeintresderoyan.fr",
               logo: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
+              image: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
               description:
                 "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
+              foundingDate: "2015",
+              email: "lespeintresderoyan@gmail.com",
+              telephone: "+33651764244",
               address: {
                 "@type": "PostalAddress",
+                streetAddress: "14 avenue des Platanes",
+                postalCode: "17200",
                 addressLocality: "Royan",
                 addressRegion: "Charente-Maritime",
                 addressCountry: "FR",
               },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 45.6239,
+                longitude: -1.0286,
+              },
+              areaServed: {
+                "@type": "Place",
+                name: "Charente-Maritime",
+              },
               sameAs: [
                 "https://www.facebook.com/peintresderoyan/",
+                "https://www.instagram.com/lespeintresderoyan/",
               ],
             }),
           }}
         />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
-        <Script
-          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-          strategy="lazyOnload"
-        />
-        <Script id="netlify-identity-redirect" strategy="lazyOnload">
-          {`
-            if (window.netlifyIdentity) {
-              window.netlifyIdentity.on("init", function(user) {
-                if (!user) {
-                  window.netlifyIdentity.on("login", function() {
-                    document.location.href = "/admin/";
-                  });
-                }
-              });
-            }
-          `}
-        </Script>
+        <Analytics />
       </body>
     </html>
   );

@@ -1,8 +1,9 @@
 import { getArtisteBySlug, getArtisteSlugs, grouperOeuvresParSerie } from "@/lib/content";
-import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import OeuvresGallery from "@/components/ui/OeuvresGallery";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,9 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: artiste.nom,
     description,
+    alternates: { canonical: `/artistes/${artiste.slug}` },
     openGraph: {
       title: `${artiste.nom} — Les Peintres de Royan`,
       description,
+      url: `/artistes/${artiste.slug}`,
       ...(artiste.portrait && {
         images: [{ url: artiste.portrait, alt: artiste.nom }],
       }),
@@ -34,40 +37,77 @@ export default async function ArtistePage({ params }: Props) {
   const artiste = getArtisteBySlug(slug);
   if (!artiste) notFound();
 
-  const jsonLd = {
+  const site = "https://lespeintresderoyan.fr";
+  const artisteUrl = `${site}/artistes/${artiste.slug}`;
+  const sameAs: string[] = [];
+  if (artiste.site_web) sameAs.push(artiste.site_web);
+  if (artiste.instagram) sameAs.push(artiste.instagram);
+
+  const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${artisteUrl}#person`,
     name: artiste.nom,
     description: artiste.bio,
-    url: `https://lespeintresderoyan.fr/artistes/${artiste.slug}`,
-    ...(artiste.portrait && { image: `https://lespeintresderoyan.fr${artiste.portrait}` }),
-    ...(artiste.site_web && { sameAs: [artiste.site_web] }),
+    url: artisteUrl,
+    ...(artiste.portrait && { image: `${site}${artiste.portrait}` }),
+    ...(sameAs.length > 0 && { sameAs }),
     jobTitle: "Artiste",
+    knowsAbout: artiste.techniques,
     memberOf: {
       "@type": "Organization",
+      "@id": `${site}/#organization`,
       name: "Les Peintres de Royan",
-      url: "https://lespeintresderoyan.fr",
+      url: site,
     },
   };
+
+  const oeuvresJsonLd = artiste.oeuvres.map((o, i) => ({
+    "@context": "https://schema.org",
+    "@type": "VisualArtwork",
+    name: o.titre,
+    image: `${site}${o.image}`,
+    ...(o.annee && { dateCreated: o.annee }),
+    ...(o.technique && { artMedium: o.technique }),
+    ...(o.dimensions && { artworkSurface: o.dimensions }),
+    creator: { "@id": `${artisteUrl}#person` },
+    isPartOf: { "@id": `${artisteUrl}#person` },
+    position: i + 1,
+  }));
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <Link
-        href="/artistes"
-        className="text-sm text-stone hover:text-sienna transition-colors tracking-wide uppercase"
-      >
-        &larr; Artistes
-      </Link>
+      {oeuvresJsonLd.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(oeuvresJsonLd),
+          }}
+        />
+      )}
+      <Breadcrumbs
+        items={[
+          { label: "Artistes", href: "/artistes" },
+          { label: artiste.nom, href: `/artistes/${artiste.slug}` },
+        ]}
+      />
 
       <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-16">
         <div>
-          <div className="aspect-[3/4] rounded-sm overflow-hidden bg-cream mb-6">
+          <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream mb-6">
             {artiste.portrait ? (
-              <img src={artiste.portrait} alt={artiste.nom} className="w-full h-full object-cover" />
+              <Image
+                src={artiste.portrait}
+                alt={`Portrait de ${artiste.nom}`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover"
+              />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <span className="font-serif text-6xl text-stone/20">

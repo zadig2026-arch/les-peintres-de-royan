@@ -18,15 +18,16 @@ export default function Header() {
 
   return (
     <header className="bg-linen/90 backdrop-blur-md sticky top-0 z-50">
+      <a href="#main" className="skip-link">Aller au contenu principal</a>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         <Logo />
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-stone hover:text-charcoal transition-colors tracking-wide"
+              className="text-sm text-stone hover:text-charcoal transition-colors tracking-wide py-3"
             >
               {link.label}
             </Link>
@@ -35,8 +36,10 @@ export default function Header() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 text-charcoal"
-          aria-label="Menu"
+          className="lg:hidden p-3 text-charcoal"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             {open ? (
@@ -49,13 +52,17 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="lg:hidden bg-linen border-t border-stone/10 pb-4">
+        <nav
+          id="mobile-nav"
+          className="lg:hidden bg-linen border-t border-stone/10 pb-4"
+          aria-label="Navigation principale mobile"
+        >
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block px-6 py-3 text-stone hover:text-charcoal transition-colors"
+              className="block px-6 py-4 text-stone hover:text-charcoal transition-colors min-h-11"
             >
               {link.label}
             </Link>

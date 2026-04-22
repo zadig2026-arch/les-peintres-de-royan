@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contactez Les Peintres de Royan.",
+  description:
+    "Contactez Les Peintres de Royan : email, téléphone, réseaux sociaux et adresse de l'association à Royan (Charente-Maritime).",
+  alternates: { canonical: "/contact" },
 };
 
 export default function Contact() {

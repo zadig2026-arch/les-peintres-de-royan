@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Expositions",
-  description: "Les expositions des Peintres de Royan en Charente-Maritime.",
+  description:
+    "Les expositions du collectif Les Peintres de Royan : agenda des rendez-vous artistiques à Royan et en Charente-Maritime, expositions à venir et passées.",
+  alternates: { canonical: "/expositions" },
 };
 
 export default function ExpositionsPage() {
@@ -17,8 +19,8 @@ export default function ExpositionsPage() {
       <p className="text-stone text-lg mb-16">Nos rendez-vous artistiques</p>
 
       {actuelles.length > 0 && (
-        <section className="mb-20">
-          <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-8">À venir</p>
+        <section className="mb-20" aria-labelledby="expos-a-venir">
+          <h2 id="expos-a-venir" className="text-xs uppercase tracking-[0.2em] text-sienna mb-8 font-sans font-normal">À venir</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {actuelles.map((expo) => (
               <ExhibitionCard key={expo.slug} expo={expo} />
@@ -28,8 +30,8 @@ export default function ExpositionsPage() {
       )}
 
       {passees.length > 0 && (
-        <section>
-          <p className="text-xs uppercase tracking-[0.2em] text-stone mb-8">Passées</p>
+        <section aria-labelledby="expos-passees">
+          <h2 id="expos-passees" className="text-xs uppercase tracking-[0.2em] text-stone mb-8 font-sans font-normal">Passées</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {passees.map((expo) => (
               <ExhibitionCard key={expo.slug} expo={expo} />

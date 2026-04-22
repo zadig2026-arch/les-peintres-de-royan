@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import OeuvresCarousel from "./OeuvresCarousel";
 
 interface OeuvreAvecMeta {
@@ -127,10 +128,13 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
                     href={`/artistes/${oeuvre.artisteSlug}`}
                     className="group relative block mb-1.5 break-inside-avoid rounded-sm overflow-hidden bg-cream"
                   >
-                    <img
+                    <Image
                       src={oeuvre.image}
                       alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
-                      className="w-full transition-transform duration-500 group-hover:scale-105"
+                      width={600}
+                      height={750}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                      className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                       <div>

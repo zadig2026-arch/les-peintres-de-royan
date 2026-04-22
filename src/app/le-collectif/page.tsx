@@ -1,16 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getPageCollectif } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Le Collectif",
-  description: "Fondé en 2015, Les Peintres de Royan est un collectif de 23 artistes contemporains.",
+  description:
+    "Fondé en 2015 par Catherine Delcan, Les Peintres de Royan réunit 23 artistes contemporains autour de la peinture, du dessin et de la gravure à Royan.",
+  alternates: { canonical: "/le-collectif" },
 };
-
-const photos = [
-  { src: "/images/expositions/vernissage-salle.jpg", alt: "Vernissage — les artistes et le public dans la salle d'exposition" },
-  { src: "/images/expositions/groupe-cinema-lido.jpg", alt: "Les Peintres de Royan exposant au cinéma Le Lido" },
-];
 
 export default function LeCollectif() {
   const page = getPageCollectif();
@@ -23,23 +21,26 @@ export default function LeCollectif() {
         </h1>
 
         {/* Hero photo — vernissage */}
-        <div className="aspect-[16/9] rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
-          <img
+        <div className="aspect-[16/9] relative rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
+          <Image
             src="/images/expositions/vernissage-salle.jpg"
             alt="Vernissage d'une exposition des Peintres de Royan"
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 896px"
+            className="object-cover"
           />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-4">Histoire</p>
+            <h2 className="text-xs uppercase tracking-[0.2em] text-sienna mb-4 font-sans font-normal">Histoire</h2>
             {page.histoire.split("\n").filter(Boolean).map((p, i) => (
               <p key={i} className="text-charcoal-light leading-relaxed mb-4">{p}</p>
             ))}
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-4">Philosophie</p>
+            <h2 className="text-xs uppercase tracking-[0.2em] text-sienna mb-4 font-sans font-normal">Philosophie</h2>
             {page.philosophie.split("\n").filter(Boolean).map((p, i) => (
               <p key={i} className="text-charcoal-light leading-relaxed mb-4">{p}</p>
             ))}
@@ -48,29 +49,36 @@ export default function LeCollectif() {
 
         {/* Photo groupe — expo Cinéma Le Lido */}
         <div className="rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
-          <img
+          <Image
             src="/images/expositions/groupe-cinema-lido.jpg"
             alt="Les Peintres de Royan exposant au cinéma Le Lido"
+            width={1600}
+            height={1067}
+            sizes="(max-width: 1024px) 100vw, 896px"
             className="w-full h-auto"
           />
         </div>
 
         {/* Nos ateliers */}
         <div className="mb-20">
-          <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-6">Nos ateliers</p>
+          <h2 className="text-xs uppercase tracking-[0.2em] text-sienna mb-6 font-sans font-normal">Nos ateliers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 -mx-6 sm:mx-0">
-            <div className="aspect-[4/3] rounded-sm overflow-hidden bg-cream">
-              <img
+            <div className="aspect-[4/3] relative rounded-sm overflow-hidden bg-cream">
+              <Image
                 src="/images/association/nos-ateliers-1.jpg"
-                alt="Atelier des Peintres de Royan"
-                className="w-full h-full object-cover"
+                alt="Atelier des Peintres de Royan — vue d'ensemble"
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
-            <div className="aspect-[4/3] rounded-sm overflow-hidden bg-cream">
-              <img
+            <div className="aspect-[4/3] relative rounded-sm overflow-hidden bg-cream">
+              <Image
                 src="/images/association/nos-ateliers-2.jpg"
-                alt="Atelier des Peintres de Royan"
-                className="w-full h-full object-cover"
+                alt="Atelier des Peintres de Royan — détail"
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
           </div>

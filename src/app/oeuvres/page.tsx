@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import OeuvresFiltrables from "@/components/ui/OeuvresFiltrables";
 
 export const metadata: Metadata = {
-  title: "Oeuvres",
+  title: "Œuvres",
   description:
-    "Galerie des oeuvres du collectif Les Peintres de Royan. Peinture contemporaine, abstraction, figuratif.",
+    "Galerie des œuvres des Peintres de Royan : plus de 120 peintures, dessins et gravures entre abstraction et figuratif, signées par 23 artistes de Charente-Maritime.",
+  alternates: { canonical: "/oeuvres" },
 };
 
 export default function OeuvresPage() {

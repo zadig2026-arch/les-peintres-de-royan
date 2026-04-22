@@ -1,18 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Captions from "yet-another-react-lightbox/plugins/captions";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/captions.css";
+import { useState, lazy, Suspense } from "react";
+import Image from "next/image";
 import type { Oeuvre } from "@/lib/types";
 import type { OeuvreSection } from "@/lib/content";
+
+const LazyLightbox = lazy(() => import("./OeuvresLightbox"));
 
 export default function OeuvresGallery({ sections }: { sections: OeuvreSection[] }) {
   const [index, setIndex] = useState(-1);
 
-  // Flatten all oeuvres across sections for lightbox navigation
   const toutesOeuvres: Oeuvre[] = sections.flatMap((s) => s.oeuvres);
 
   const slides = toutesOeuvres.map((o) => ({
@@ -22,14 +19,15 @@ export default function OeuvresGallery({ sections }: { sections: OeuvreSection[]
     description: [o.technique, o.dimensions, o.annee].filter(Boolean).join(" — "),
   }));
 
-  // Track cumulative index offset per section
-  let offset = 0;
+  const offsets = sections.reduce<number[]>((acc, section, i) => {
+    acc.push(i === 0 ? 0 : acc[i - 1] + sections[i - 1].oeuvres.length);
+    return acc;
+  }, []);
 
   return (
     <>
       {sections.map((section, si) => {
-        const sectionOffset = offset;
-        offset += section.oeuvres.length;
+        const sectionOffset = offsets[si];
         return (
           <div key={si} className={si > 0 ? "mt-12" : ""}>
             {section.label && (
@@ -40,16 +38,21 @@ export default function OeuvresGallery({ sections }: { sections: OeuvreSection[]
             <div className="columns-2 gap-5 space-y-5">
               {section.oeuvres.map((oeuvre, i) => (
                 <div key={i} className="break-inside-avoid">
-                  <div
-                    className="rounded-sm overflow-hidden bg-cream cursor-pointer"
+                  <button
+                    type="button"
+                    className="block w-full rounded-sm overflow-hidden bg-cream cursor-zoom-in text-left"
                     onClick={() => setIndex(sectionOffset + i)}
+                    aria-label={`Agrandir ${oeuvre.titre}`}
                   >
-                    <img
+                    <Image
                       src={oeuvre.image}
                       alt={oeuvre.titre}
-                      className="w-full hover:opacity-90 transition-opacity"
+                      width={800}
+                      height={1000}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 400px"
+                      className="w-full h-auto hover:opacity-90 transition-opacity"
                     />
-                  </div>
+                  </button>
                   <p className="text-sm text-charcoal mt-2">{oeuvre.titre}</p>
                   <p className="text-xs text-stone">
                     {[oeuvre.technique, oeuvre.dimensions, oeuvre.annee].filter(Boolean).join(" — ")}
@@ -61,17 +64,16 @@ export default function OeuvresGallery({ sections }: { sections: OeuvreSection[]
         );
       })}
 
-      <Lightbox
-        open={index >= 0}
-        index={index}
-        close={() => setIndex(-1)}
-        slides={slides}
-        plugins={[Zoom, Captions]}
-        captions={{ descriptionTextAlign: "center" }}
-        styles={{
-          container: { backgroundColor: "rgba(28, 25, 23, 0.95)" },
-        }}
-      />
+      {index >= 0 && (
+        <Suspense fallback={null}>
+          <LazyLightbox
+            open
+            index={index}
+            close={() => setIndex(-1)}
+            slides={slides}
+          />
+        </Suspense>
+      )}
     </>
   );
 }

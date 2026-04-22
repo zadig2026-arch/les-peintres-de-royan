@@ -1,7 +1,8 @@
 import { getExpositionBySlug, getExpositionSlugs } from "@/lib/content";
-import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,9 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: expo.titre,
     description,
+    alternates: { canonical: `/expositions/${expo.slug}` },
     openGraph: {
       title: `${expo.titre} — Les Peintres de Royan`,
       description,
+      url: `/expositions/${expo.slug}`,
       ...(expo.image_principale && {
         images: [{ url: expo.image_principale, alt: expo.titre }],
       }),
@@ -82,15 +85,12 @@ export default async function ExpositionPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Link
-        href="/expositions"
-        className="inline-flex items-center gap-2 text-sm text-terre-light hover:text-atlantique transition-colors mb-10 group"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform group-hover:-translate-x-1">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        Toutes les expositions
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Expositions", href: "/expositions" },
+          { label: expo.titre, href: `/expositions/${expo.slug}` },
+        ]}
+      />
 
       <div>
         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-6 ${statut.className}`}>
@@ -170,12 +170,14 @@ export default async function ExpositionPage({ params }: Props) {
               {expo.photos_galerie.map((photo, i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-xl bg-sable overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+                  className="aspect-square relative rounded-xl bg-sable overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
                 >
-                  <img
+                  <Image
                     src={photo}
-                    alt={`${expo.titre} - photo ${i + 1}`}
-                    className="w-full h-full object-cover"
+                    alt={`${expo.titre} — photo ${i + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                    className="object-cover"
                   />
                 </div>
               ))}
