@@ -1,7 +1,11 @@
 ---
 artiste_slug: anne-laure-bayart
-titre: Oeuvre 2
+titre: Linda 50 x 65 cm
 slug: oeuvre-2
-image: /images/artistes/anne-laure-bayart/oeuvre-2.jpg
+image: /images/20260422_091014.jpg
+annee: ''
+technique: ''
+dimensions: ''
+serie: ''
+ordre_serie: null
 ---
-
