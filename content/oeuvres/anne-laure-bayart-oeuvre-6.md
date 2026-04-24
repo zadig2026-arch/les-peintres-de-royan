@@ -1,6 +1,11 @@
 ---
 artiste_slug: anne-laure-bayart
-titre: Oeuvre 6
+titre: Escalier Notre Dame de Royan 100 x 80
 slug: oeuvre-6
 image: /images/artistes/anne-laure-bayart/oeuvre-6.jpg
+annee: ''
+technique: ''
+dimensions: ''
+serie: ''
+ordre_serie: null
 ---
