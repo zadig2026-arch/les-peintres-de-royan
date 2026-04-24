@@ -6,6 +6,6 @@ image: /images/artistes/anne-laure-bayart/oeuvre-6.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: ''
+serie: Royan
 ordre_serie: null
 ---
