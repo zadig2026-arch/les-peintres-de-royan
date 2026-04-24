@@ -1,6 +1,6 @@
 ---
 artiste_slug: guillaume-lefevre
-titre: Dune 35X35
+titre: Dune
 slug: oeuvre-1
 image: /images/artistes/guillaume-lefevre/oeuvre-1.png
 annee: ''
