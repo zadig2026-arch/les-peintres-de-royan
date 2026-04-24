@@ -11,7 +11,7 @@ instagram: ''
 ordre: 17
 visible: true
 oeuvres:
-  - titre: Mélusine
+  - titre: Mélusine 50X70
     image: /images/20260422_090816.jpg
     annee: ''
     technique: ''
