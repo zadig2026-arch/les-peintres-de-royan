@@ -6,6 +6,6 @@ image: /images/20260422_091014.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: Portrait
+serie: Portraits
 ordre_serie: null
 ---
