@@ -1,5 +1,5 @@
 ---
-nom: Lydia Leas
+nom: Lydia Léas
 slug: lydia-leas
 role: Membre
 portrait: /images/artistes/lydia-leas/oeuvre-8.jpg
