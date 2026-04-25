@@ -2,14 +2,18 @@
 nom: Lise Thabaud
 slug: lise-thabaud
 role: Membre
-portrait: '/images/artistes/portraits/lise-thabaud.jpg'
-bio: Lise Thabaud est membre du collectif Les Peintres de Royan.
+portrait: /images/artistes/portraits/lise-thabaud.jpg
+bio: Le travail de Lise Thabaud , souvent pointilliste, quasi scientifique, est inspiré du vivant, entre    surréalisme et abstraction.
 techniques:
   - Peinture
 site_web: ''
 instagram: ''
 ordre: 14
 visible: true
-oeuvres: []
+oeuvres:
+  - titre: La Liseuse
+    image: /images/14-Autres-L.THABAUD-Exquise délectation-50X65 CM-2023.jpg
+    annee: ''
+    technique: ''
+    dimensions: ''
 ---
-
