@@ -2,7 +2,7 @@
 artiste_slug: martine-berni
 titre: nenuphars
 slug: oeuvre-6
-image: /images/artistes/martine-berni/oeuvre-6.jpg
+image: /images/Martine Berninenuphares 2.jpg
 annee: ''
 technique: ''
 dimensions: ''
