@@ -6,6 +6,6 @@ image: /images/Martine Berninenuphares 2.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: En forêt
+serie: Eau et nénuphars
 ordre_serie: null
 ---
