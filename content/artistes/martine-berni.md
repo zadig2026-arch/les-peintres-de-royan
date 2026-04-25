@@ -3,7 +3,7 @@ nom: Martine Berni
 slug: martine-berni
 role: Membre
 portrait: /images/IMG_0267.jpg
-bio: Martine Berni est membre du collectif Les Peintres de Royan.
+bio: Martine Berni est membre du collectif Les Peintres de Royan. Sa peinture est contemporaine,       inspirée souvent de la nature, entre figuration et abstraction.
 techniques:
   - Peinture
 site_web: ''
