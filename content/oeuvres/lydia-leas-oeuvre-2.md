@@ -6,4 +6,6 @@ image: /images/artistes/lydia-leas/oeuvre-2.jpg
 annee: ''
 technique: ''
 dimensions: ''
+serie: Les ponts
+ordre_serie: null
 ---
