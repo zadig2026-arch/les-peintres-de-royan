@@ -2,17 +2,18 @@
 nom: Yamina Laurençon
 slug: yamina-laurencon
 role: Membre
-portrait: '/images/artistes/portraits/yamina-laurencon.jpg'
-bio: >-
-  Yamina peint des compositions florales vibrantes et expressives, riches en
-  couleurs et en textures, qui dégagent douceur et harmonie.
+portrait: /images/IMG_6330.jpg
+bio: Yamina peint des compositions florales vibrantes et expressives, riches en couleurs et en              textures, qui dégagent douceur et harmonie. Son travail est une traduction libre et intuitive     d'émotions ; elles entrent en résonance notre vécu.
 techniques:
-  - Peinture florale
-  - Acrylique
+  - Huile
 site_web: ''
 instagram: ''
 ordre: 5
 visible: true
-oeuvres: []
+oeuvres:
+  - titre: Autoportrait
+    image: /images/IMG_6330.jpg
+    annee: ''
+    technique: ''
+    dimensions: ''
 ---
-
