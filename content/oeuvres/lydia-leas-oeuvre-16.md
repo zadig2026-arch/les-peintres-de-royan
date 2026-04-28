@@ -1,6 +1,6 @@
 ---
 artiste_slug: lydia-leas
-titre: Bord de mer 2 / Marais
+titre: Marais
 slug: oeuvre-16
 image: /images/artistes/lydia-leas/oeuvre-16.jpg
 annee: ''
