@@ -2,7 +2,7 @@
 nom: Lise Thabaud
 slug: lise-thabaud
 role: Membre
-portrait: /images/artistes/portraits/lise-thabaud.jpg
+portrait: /images/oeuvre-4.jpg
 bio: Le travail de Lise Thabaud , souvent pointilliste, quasi scientifique, est inspiré du vivant, entre    surréalisme et abstraction.
 techniques:
   - Peinture
