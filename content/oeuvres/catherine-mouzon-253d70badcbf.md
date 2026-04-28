@@ -6,7 +6,7 @@ image: /images/Grenouille 40x40 Coggia 2.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: Paysages marins
+serie: Paysages maritimes
 ordre_serie: 2
 mise_en_avant: false
 ---
