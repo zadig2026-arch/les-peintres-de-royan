@@ -1,5 +1,5 @@
 ---
-nom: Catherine Delcan
+nom: Catherine Becques-Delcan
 slug: catherine-delcan
 role: Fondatrice & Présidente
 portrait: /images/artistes/catherine-delcan/Catherine Delcanautoportrait100X.jpg
