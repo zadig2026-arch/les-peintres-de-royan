@@ -5,7 +5,7 @@ slug: oeuvre-21
 image: /images/IMG_6256.JPG
 annee: ''
 technique: ''
-dimensions: ''
+dimensions: 80X60
 serie: Couleurs de Royan
 ordre_serie: 1
 ---
