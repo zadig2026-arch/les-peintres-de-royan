@@ -6,7 +6,7 @@ image: /images/Fond Marin 2 161x96 Coggia.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: Paysages marins
+serie: Paysages maritimes
 ordre_serie: 1
 mise_en_avant: false
 ---
