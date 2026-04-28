@@ -10,9 +10,6 @@ export default function ArtistCard({ artiste }: { artiste: Artiste }) {
       <h3 className="font-serif text-xl text-charcoal group-hover:text-sienna transition-colors">
         {artiste.nom}
       </h3>
-      {artiste.role && artiste.role !== "Membre" && (
-        <p className="text-xs text-sienna mt-1">{artiste.role}</p>
-      )}
       <p className="text-sm text-stone mt-1">
         {artiste.techniques.join(", ")}
       </p>

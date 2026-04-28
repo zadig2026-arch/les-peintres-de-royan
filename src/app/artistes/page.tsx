@@ -49,9 +49,6 @@ export default function ArtistesPage() {
             <h2 className="font-serif text-xl text-charcoal group-hover:text-sienna transition-colors">
               {a.nom}
             </h2>
-            {a.role && a.role !== "Membre" && (
-              <p className="text-xs text-sienna mt-1">{a.role}</p>
-            )}
             <p className="text-sm text-stone mt-1">
               {a.techniques.join(", ")}
             </p>

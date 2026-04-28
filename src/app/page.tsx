@@ -204,9 +204,6 @@ export default function Accueil() {
                 <span className="font-serif text-lg text-charcoal group-hover:text-sienna transition-colors">
                   {a.nom}
                 </span>
-                {a.role && a.role !== "Membre" && (
-                  <span className="block text-xs text-stone mt-0.5">{a.role}</span>
-                )}
               </Link>
             ))}
           </div>
