@@ -35,7 +35,7 @@ collections:
         field: { label: "Technique", name: "technique", widget: "string" }
       - { label: "Site web", name: "site_web", widget: "string", required: false }
       - { label: "Instagram", name: "instagram", widget: "string", required: false }
-      - { label: "Ordre d'affichage", name: "ordre", widget: "number", default: 99, hint: "Plus le nombre est petit, plus l'artiste apparaît tôt sur la page Artistes. Utilise des paliers de 10 (10, 20, 30...) pour pouvoir insérer un artiste entre deux." }
+      - { label: "Ordre d'affichage", name: "ordre", widget: "number", default: 99, hint: "Champ désactivé : les artistes sont triés par prénom (ordre alphabétique français). Ce champ est conservé pour usage futur." }
       - { label: "Visible sur le site", name: "visible", widget: "boolean", default: true }
       - label: "Mise en page de la galerie"
         name: "mise_en_page_galerie"
