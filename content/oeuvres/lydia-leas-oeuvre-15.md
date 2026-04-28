@@ -1,6 +1,6 @@
 ---
 artiste_slug: lydia-leas
-titre: Bord de mer 1
+titre: Laguna Verde
 slug: oeuvre-15
 image: /images/artistes/lydia-leas/oeuvre-15.jpg
 annee: ''
