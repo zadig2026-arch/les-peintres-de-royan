@@ -9,7 +9,7 @@ techniques:
   - Peinture contemporaine
 site_web: ''
 instagram: ''
-ordre: 10
+ordre: 3
 visible: true
 oeuvres:
   - titre: autoportrait
