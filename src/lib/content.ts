@@ -42,7 +42,29 @@ function mergeOeuvresIntoArtiste(artiste: Artiste, oeuvresFichiers: OeuvreFichie
   const extra = oeuvresFichiers
     .filter((o) => o.artiste_slug === artiste.slug)
     .map(({ artiste_slug, slug, ...oeuvre }) => oeuvre);
-  return { ...artiste, oeuvres: [...artiste.oeuvres, ...extra] };
+  const inline = artiste.oeuvres ?? [];
+  return {
+    ...artiste,
+    series_ordre: normalizeSeriesOrdre(artiste.series_ordre),
+    oeuvres: [...inline, ...extra],
+  };
+}
+
+// Sveltia stocke les listes typées comme [{nom: "Foo"}, ...] ; on accepte aussi
+// le format simple (string[]) pour les fichiers édités à la main.
+function normalizeSeriesOrdre(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const normalized = value
+    .map((item) => {
+      if (typeof item === "string") return item;
+      if (item && typeof item === "object" && "nom" in item) {
+        const v = (item as { nom?: unknown }).nom;
+        return typeof v === "string" ? v : null;
+      }
+      return null;
+    })
+    .filter((v): v is string => typeof v === "string" && v.length > 0);
+  return normalized.length > 0 ? normalized : undefined;
 }
 
 // --- Artistes ---
@@ -52,7 +74,7 @@ export function getAllArtistes(): Artiste[] {
   return readMarkdownFiles<Artiste>("artistes")
     .filter((a) => a.visible)
     .map((a) => mergeOeuvresIntoArtiste(a, oeuvresFichiers))
-    .sort((a, b) => a.ordre - b.ordre);
+    .sort((a, b) => (a.ordre ?? 99) - (b.ordre ?? 99));
 }
 
 export function getArtisteBySlug(slug: string): Artiste | undefined {
@@ -131,7 +153,10 @@ function extrairePrefixe(titre: string): string | null {
   return match ? match[1] : null;
 }
 
-export function grouperOeuvresParSerie(oeuvres: Oeuvre[]): OeuvreSection[] {
+export function grouperOeuvresParSerie(
+  oeuvres: Oeuvre[],
+  seriesOrdre?: string[],
+): OeuvreSection[] {
   const seriesExplicites = new Map<string, Oeuvre[]>();
   const sansSerieExplicite: Oeuvre[] = [];
 
@@ -167,15 +192,83 @@ export function grouperOeuvresParSerie(oeuvres: Oeuvre[]): OeuvreSection[] {
 
   // 3. Trier dans chaque série
   const sortSerie = (oeuvres: Oeuvre[]) =>
-    oeuvres.sort((a, b) => (a.ordre_serie ?? 99) - (b.ordre_serie ?? 99));
+    [...oeuvres].sort((a, b) => (a.ordre_serie ?? 99) - (b.ordre_serie ?? 99));
 
-  // 4. Assembler les sections
+  // 4. Fusionner toutes les séries (explicites + auto) dans une map unique
+  const toutesSeries = new Map<string, Oeuvre[]>();
+  seriesExplicites.forEach((items, label) => toutesSeries.set(label, sortSerie(items)));
+  seriesAuto.forEach((items, label) => toutesSeries.set(label, sortSerie(items)));
+
+  // 5. Ordonner les sections : d'abord celles listées dans seriesOrdre,
+  // puis le reste par ordre alphabétique. Les œuvres sans série toujours en dernier.
   const sections: OeuvreSection[] = [];
-  seriesExplicites.forEach((items, label) => sections.push({ label, oeuvres: sortSerie(items) }));
-  seriesAuto.forEach((items, label) => sections.push({ label, oeuvres: sortSerie(items) }));
+  const labelsRestants = new Set(toutesSeries.keys());
+
+  if (seriesOrdre && seriesOrdre.length > 0) {
+    seriesOrdre.forEach((label) => {
+      const items = toutesSeries.get(label);
+      if (items) {
+        sections.push({ label, oeuvres: items });
+        labelsRestants.delete(label);
+      }
+    });
+  }
+
+  Array.from(labelsRestants)
+    .sort((a, b) => a.localeCompare(b, "fr"))
+    .forEach((label) => sections.push({ label, oeuvres: toutesSeries.get(label)! }));
+
   if (vraiSansSerie.length > 0) sections.push({ label: null, oeuvres: vraiSansSerie });
 
   return sections;
+}
+
+// --- Œuvres mises en avant (page d'accueil) ---
+
+export interface FeaturedOeuvre {
+  oeuvre: Oeuvre;
+  artiste: Pick<Artiste, "nom" | "slug">;
+}
+
+export function getFeaturedOeuvres(limit = 8): FeaturedOeuvre[] {
+  const artistes = getAllArtistes();
+  const featured: FeaturedOeuvre[] = [];
+
+  for (const artiste of artistes) {
+    for (const oeuvre of artiste.oeuvres) {
+      if (oeuvre.mise_en_avant) {
+        featured.push({ oeuvre, artiste: { nom: artiste.nom, slug: artiste.slug } });
+      }
+    }
+  }
+
+  if (featured.length > 0) return featured.slice(0, limit);
+
+  // Fallback : les `limit` œuvres les plus récemment ajoutées (par mtime fichier).
+  const oeuvresDir = path.join(contentDir, "oeuvres");
+  if (!fs.existsSync(oeuvresDir)) return [];
+  const artisteBySlug = new Map(artistes.map((a) => [a.slug, a] as const));
+  const entries = fs
+    .readdirSync(oeuvresDir)
+    .filter((f) => f.endsWith(".md"))
+    .map((file) => {
+      const fullPath = path.join(oeuvresDir, file);
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const { data } = matter(raw);
+      return {
+        data: data as OeuvreFichier,
+        mtime: fs.statSync(fullPath).mtimeMs,
+      };
+    })
+    .filter((e) => artisteBySlug.has(e.data.artiste_slug))
+    .sort((a, b) => b.mtime - a.mtime)
+    .slice(0, limit);
+
+  return entries.map(({ data }) => {
+    const artiste = artisteBySlug.get(data.artiste_slug)!;
+    const { artiste_slug, slug, ...oeuvre } = data;
+    return { oeuvre, artiste: { nom: artiste.nom, slug: artiste.slug } };
+  });
 }
 
 // --- Pages ---

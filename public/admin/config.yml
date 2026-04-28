@@ -35,18 +35,25 @@ collections:
         field: { label: "Technique", name: "technique", widget: "string" }
       - { label: "Site web", name: "site_web", widget: "string", required: false }
       - { label: "Instagram", name: "instagram", widget: "string", required: false }
-      - { label: "Ordre d'affichage", name: "ordre", widget: "number", default: 99 }
+      - { label: "Ordre d'affichage", name: "ordre", widget: "number", default: 99, hint: "Plus le nombre est petit, plus l'artiste apparaît tôt sur la page Artistes. Utilise des paliers de 10 (10, 20, 30...) pour pouvoir insérer un artiste entre deux." }
       - { label: "Visible sur le site", name: "visible", widget: "boolean", default: true }
-      - label: "Oeuvres"
-        name: "oeuvres"
+      - label: "Mise en page de la galerie"
+        name: "mise_en_page_galerie"
+        widget: "select"
+        required: false
+        default: "masonry-2"
+        options:
+          - { label: "Masonry 2 colonnes (par défaut)", value: "masonry-2" }
+          - { label: "Masonry 3 colonnes", value: "masonry-3" }
+          - { label: "Grille régulière 3 colonnes", value: "grille-3" }
+          - { label: "Grille régulière 4 colonnes", value: "grille-4" }
+        hint: "Détermine comment les œuvres de l'artiste sont disposées sur sa page. Masonry = hauteurs variables (Pinterest), Grille = cases régulières."
+      - label: "Ordre d'affichage des séries"
+        name: "series_ordre"
         widget: "list"
-        summary: "{{fields.titre}} ({{fields.annee}})"
-        fields:
-          - { label: "Titre", name: "titre", widget: "string" }
-          - { label: "Image", name: "image", widget: "image" }
-          - { label: "Année", name: "annee", widget: "string", required: false }
-          - { label: "Technique", name: "technique", widget: "string", required: false }
-          - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
+        required: false
+        hint: "Glisse pour réorganiser. Tape le nom exact des séries (ex: « Arbres »). Les séries non listées passent en fin de page."
+        field: { label: "Nom de la série", name: "nom", widget: "string" }
 
   - name: "oeuvres"
     label: "Oeuvres"
@@ -73,6 +80,7 @@ collections:
       - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
       - { label: "Série", name: "serie", widget: "string", required: false, hint: "Ex: Lieux abandonnés, Portraits" }
       - { label: "Ordre dans la série", name: "ordre_serie", widget: "number", required: false, hint: "Position dans la série (1, 2, 3...)" }
+      - { label: "Mettre en avant sur la page d'accueil", name: "mise_en_avant", widget: "boolean", required: false, default: false, hint: "Coche pour afficher cette œuvre dans la vitrine de la page d'accueil." }
 
   - name: "expositions"
     label: "Expositions"

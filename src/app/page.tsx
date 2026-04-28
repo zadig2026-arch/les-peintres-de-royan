@@ -1,23 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/content";
+import {
+  getPageAccueil,
+  getExpositionsActuelles,
+  getAllArtistes,
+  getFeaturedOeuvres,
+} from "@/lib/content";
 
 export default function Accueil() {
   const page = getPageAccueil();
   const expos = getExpositionsActuelles();
   const artistes = getAllArtistes();
-
-  // Strip artworks — different artists from the hero mosaic for variety
-  const oeuvres = [
-    { src: "/images/artistes/portraits/nicole-lesueur.jpg", nom: "Nicole Lesueur" },
-    { src: "/images/artistes/portraits/milah-hernandez.jpg", nom: "Milah Hernandez" },
-    { src: "/images/artistes/portraits/anne-balleix.jpg", nom: "Anne Balleix" },
-    { src: "/images/artistes/portraits/chantal-robin.jpg", nom: "Chantal Robin" },
-    { src: "/images/artistes/portraits/philippe-humblot.jpg", nom: "Philippe Humblot" },
-    { src: "/images/artistes/portraits/jacqueline-rocheteau.jpg", nom: "Jacqueline Rocheteau" },
-    { src: "/images/artistes/portraits/chantal-morton.jpg", nom: "Chantal Morton" },
-    { src: "/images/artistes/portraits/lydia-leas.jpg", nom: "Lydia Leas" },
-  ];
+  const featured = getFeaturedOeuvres(8);
 
   return (
     <>
@@ -141,41 +135,47 @@ export default function Accueil() {
       )}
 
       {/* Oeuvres strip — horizontal scroll */}
-      <section className="py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-10">
-          <h2 className="font-serif text-3xl text-charcoal">Oeuvres</h2>
-          <p className="text-stone mt-2">
-            {artistes.length} artistes, entre figuratif et abstraction
-          </p>
-        </div>
-        <div className="flex gap-4 px-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-          {oeuvres.map((o, i) => (
-            <div
-              key={i}
-              className="shrink-0 w-[280px] sm:w-[320px] snap-start"
+      {featured.length > 0 && (
+        <section className="py-20 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 mb-10">
+            <h2 className="font-serif text-3xl text-charcoal">Œuvres</h2>
+            <p className="text-stone mt-2">
+              Une sélection des œuvres du collectif
+            </p>
+          </div>
+          <div className="flex gap-4 px-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            {featured.map(({ oeuvre, artiste }, i) => (
+              <Link
+                key={i}
+                href={`/artistes/${artiste.slug}`}
+                className="group shrink-0 w-[280px] sm:w-[320px] snap-start"
+              >
+                <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-stone/10">
+                  <Image
+                    src={oeuvre.image}
+                    alt={`${oeuvre.titre} — ${artiste.nom}`}
+                    fill
+                    sizes="320px"
+                    className="object-cover group-hover:opacity-90 transition-opacity"
+                  />
+                </div>
+                <p className="mt-3 text-sm text-charcoal group-hover:text-sienna transition-colors">
+                  {oeuvre.titre}
+                </p>
+                <p className="text-xs text-stone">{artiste.nom}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="max-w-7xl mx-auto px-6 mt-8">
+            <Link
+              href="/oeuvres"
+              className="text-sienna hover:text-sienna-dark text-sm tracking-wide uppercase font-medium"
             >
-              <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-stone/10">
-                <Image
-                  src={o.src}
-                  alt={`Portrait de ${o.nom}`}
-                  fill
-                  sizes="320px"
-                  className="object-cover hover:opacity-90 transition-opacity"
-                />
-              </div>
-              <p className="mt-3 text-sm text-stone">{o.nom}</p>
-            </div>
-          ))}
-        </div>
-        <div className="max-w-7xl mx-auto px-6 mt-8">
-          <Link
-            href="/oeuvres"
-            className="text-sienna hover:text-sienna-dark text-sm tracking-wide uppercase font-medium"
-          >
-            Voir toutes les oeuvres &rarr;
-          </Link>
-        </div>
-      </section>
+              Voir toutes les œuvres &rarr;
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Quote */}
       <section className="bg-cream py-24">

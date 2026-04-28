@@ -6,12 +6,15 @@ export interface Oeuvre {
   dimensions?: string;
   serie?: string;
   ordre_serie?: number;
+  mise_en_avant?: boolean;
 }
 
 export interface OeuvreFichier extends Oeuvre {
   artiste_slug: string;
   slug: string;
 }
+
+export type LayoutGalerie = "masonry-2" | "masonry-3" | "grille-3" | "grille-4";
 
 export interface Artiste {
   nom: string;
@@ -24,6 +27,8 @@ export interface Artiste {
   instagram?: string;
   ordre: number;
   visible: boolean;
+  mise_en_page_galerie?: LayoutGalerie;
+  series_ordre?: string[];
   oeuvres: Oeuvre[];
 }
 

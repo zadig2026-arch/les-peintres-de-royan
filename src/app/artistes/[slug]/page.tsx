@@ -147,7 +147,10 @@ export default async function ArtistePage({ params }: Props) {
           {artiste.oeuvres.length > 0 ? (
             <>
               <h2 className="text-xs uppercase tracking-[0.2em] text-stone mb-8">Oeuvres</h2>
-              <OeuvresGallery sections={grouperOeuvresParSerie(artiste.oeuvres)} />
+              <OeuvresGallery
+                sections={grouperOeuvresParSerie(artiste.oeuvres, artiste.series_ordre)}
+                layout={artiste.mise_en_page_galerie ?? "masonry-2"}
+              />
             </>
           ) : (
             <div className="border border-stone/15 rounded-sm p-12 text-center">
