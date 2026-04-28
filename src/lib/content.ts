@@ -74,7 +74,12 @@ export function getAllArtistes(): Artiste[] {
   return readMarkdownFiles<Artiste>("artistes")
     .filter((a) => a.visible)
     .map((a) => mergeOeuvresIntoArtiste(a, oeuvresFichiers))
-    .sort((a, b) => a.nom.localeCompare(b.nom, "fr", { sensitivity: "base" }));
+    .sort((a, b) => {
+      const ordreA = a.ordre ?? 99;
+      const ordreB = b.ordre ?? 99;
+      if (ordreA !== ordreB) return ordreA - ordreB;
+      return a.nom.localeCompare(b.nom, "fr", { sensitivity: "base" });
+    });
 }
 
 export function getArtisteBySlug(slug: string): Artiste | undefined {
