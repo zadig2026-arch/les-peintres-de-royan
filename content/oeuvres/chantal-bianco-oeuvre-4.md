@@ -6,6 +6,6 @@ image: /images/artistes/chantal-bianco/oeuvre-4.jpg
 annee: ''
 technique: Huile
 dimensions: ''
-serie: Natures mortes
+serie: Série 2
 ordre_serie: null
 ---
