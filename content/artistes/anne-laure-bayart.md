@@ -10,6 +10,10 @@ site_web: ''
 instagram: ''
 ordre: 17
 visible: true
+series_ordre:
+  - Royan
+  - Portraits
+  - Autres
 oeuvres:
   - titre: Notre Dame - Royan
     image: /images/20260422_090944.jpg
