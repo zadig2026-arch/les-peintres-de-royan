@@ -8,4 +8,5 @@ technique: ''
 dimensions: ''
 serie: Royan
 ordre_serie: null
+mise_en_avant: true
 ---
