@@ -1,7 +1,7 @@
 ---
 artiste_slug: chantal-bianco
 titre: Oeuvre 1
-slug: oeuvre 1
+slug: Tourbillon
 image: /images/artistes/chantal-bianco/oeuvre-1.jpg
 annee: ''
 technique: ''
