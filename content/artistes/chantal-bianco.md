@@ -3,7 +3,7 @@ nom: Chantal Bianco
 slug: chantal-bianco
 role: Membre
 portrait: /images/artistes/chantal-bianco/oeuvre-6.jpg
-bio: Chantal Bianco (Robin) est membre du collectif Les Peintres de Royan.
+bio: Le travail de Chantal Bianco (Robin)  s'inscrit dans une quête permanente de mouvements et d'émotions. Elle souhaite créer un espace où l'imaginaire peut s'épanouir.
 techniques:
   - Peinture
 site_web: ''
