@@ -1,6 +1,6 @@
 ---
 artiste_slug: yamina-laurencon
-titre: auto portrait
+titre: autoportrait
 slug: oeuvre-12
 image: /images/artistes/yamina-laurencon/oeuvre-12.jpg
 annee: '2017'
