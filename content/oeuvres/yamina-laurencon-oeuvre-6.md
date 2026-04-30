@@ -1,6 +1,6 @@
 ---
 artiste_slug: yamina-laurencon
-titre: Taces
+titre: Traces
 slug: oeuvre-6
 image: /images/artistes/yamina-laurencon/oeuvre-6.jpg
 annee: '2025'
