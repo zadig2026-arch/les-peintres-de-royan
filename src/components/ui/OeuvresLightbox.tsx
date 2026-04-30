@@ -30,7 +30,7 @@ export default function OeuvresLightbox({ open, index, close, slides }: Props) {
       plugins={[Zoom, Captions]}
       captions={{ descriptionTextAlign: "center" }}
       styles={{
-        container: { backgroundColor: "rgba(28, 25, 23, 0.95)" },
+        container: { backgroundColor: "rgb(28, 25, 23)" },
       }}
     />
   );
