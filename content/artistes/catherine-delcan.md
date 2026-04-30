@@ -8,8 +8,8 @@ techniques:
   - broux de noix sur bois  / 100X80
   - Peinture contemporaine
 site_web: ''
-instagram: ''
-ordre: 5.5
+instagram: catherine_delcan
+ordre: 3
 visible: true
 oeuvres:
   - titre: autoportrait
