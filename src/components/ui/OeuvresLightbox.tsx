@@ -29,6 +29,7 @@ export default function OeuvresLightbox({ open, index, close, slides }: Props) {
       slides={slides}
       plugins={[Zoom, Captions]}
       captions={{ descriptionTextAlign: "center" }}
+      carousel={{ padding: "64px" }}
       styles={{
         container: { backgroundColor: "rgb(28, 25, 23)" },
       }}
