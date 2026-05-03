@@ -1,11 +1,11 @@
 ---
 artiste_slug: martine-berni
-titre: Oeuvre 2
+titre: Ombre et chardons
 slug: oeuvre-2
-image: /images/artistes/martine-berni/oeuvre-2.jpg
+image: /images/IMG_6359 2.jpg
 annee: ''
 technique: ''
-dimensions: ''
+dimensions: 55X75
 serie: En forêt
-ordre_serie: null
+ordre_serie: 1
 ---
