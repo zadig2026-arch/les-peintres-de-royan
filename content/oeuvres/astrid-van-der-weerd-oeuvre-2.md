@@ -1,7 +1,11 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Oeuvre 2
+titre: Fleurs
 slug: oeuvre-2
-image: /images/artistes/astrid-van-der-weerd/oeuvre-2.jpg
+image: /images/1000063309 2.jpg
+annee: ''
+technique: ''
+dimensions: ''
+serie: Fleurq
+ordre_serie: 1
 ---
-
