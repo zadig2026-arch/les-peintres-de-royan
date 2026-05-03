@@ -6,6 +6,6 @@ image: /images/Martine Berninenuphares 2.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: Eau et nénuphars
+serie: Eau
 ordre_serie: 1
 ---
