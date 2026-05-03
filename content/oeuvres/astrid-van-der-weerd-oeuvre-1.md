@@ -1,7 +1,11 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Oeuvre 1
+titre: Fleurs
 slug: oeuvre-1
-image: /images/artistes/astrid-van-der-weerd/oeuvre-1.jpg
+image: /images/1000063307.jpg
+annee: ''
+technique: technique mixte
+dimensions: ''
+serie: Fleurs
+ordre_serie: 2
 ---
-
