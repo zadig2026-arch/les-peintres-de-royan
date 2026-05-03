@@ -9,7 +9,7 @@ techniques:
   - Peinture contemporaine
 site_web: ''
 instagram: catherine_delcan
-ordre: 3
+ordre: 4
 visible: true
 oeuvres:
   - titre: autoportrait
