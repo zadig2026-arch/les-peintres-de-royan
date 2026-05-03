@@ -1,7 +1,11 @@
 ---
 artiste_slug: martine-berni
-titre: rouge
+titre: Les bougainvilliers
 slug: oeuvre-7
-image: /images/artistes/martine-berni/oeuvre-7.jpeg
+image: /images/IMG_6365.JPG
+annee: ''
+technique: ''
 dimensions: 80x60 cm
+serie: ''
+ordre_serie: 3
 ---
