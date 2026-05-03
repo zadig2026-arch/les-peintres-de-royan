@@ -6,7 +6,7 @@ image: /images/IMG_6371.JPG
 annee: ''
 technique: ''
 dimensions: 60X46
-serie: A la marée basse
+serie: Bois
 ordre_serie: null
 mise_en_avant: false
 ---
