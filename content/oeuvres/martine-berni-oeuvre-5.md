@@ -6,6 +6,6 @@ image: /images/IMG_6367.JPG
 annee: ''
 technique: ''
 dimensions: 50X36
-serie: ''
+serie: En forêt
 ordre_serie: null
 ---
