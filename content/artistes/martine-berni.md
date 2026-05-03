@@ -10,6 +10,7 @@ site_web: ''
 instagram: ''
 ordre: 3
 visible: true
+mise_en_page_galerie: masonry-2
 oeuvres:
   - titre: nu
     image: /images/IMG_2975 2.jpg
