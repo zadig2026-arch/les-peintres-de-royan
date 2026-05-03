@@ -6,6 +6,6 @@ image: /images/IMG_6372.jpg
 annee: ''
 technique: ''
 dimensions: 100X73
-serie: ''
+serie: En forêt
 ordre_serie: null
 ---
