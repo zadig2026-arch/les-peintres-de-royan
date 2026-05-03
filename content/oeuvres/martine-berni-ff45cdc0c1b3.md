@@ -6,7 +6,7 @@ image: /images/IMG_6366.JPG
 annee: ''
 technique: ''
 dimensions: 78X57
-serie: Bois
+serie: A la marée basse
 ordre_serie: null
 mise_en_avant: false
 ---
