@@ -8,4 +8,5 @@ technique: ''
 dimensions: 50X36
 serie: En forêt
 ordre_serie: null
+mise_en_avant: true
 ---
