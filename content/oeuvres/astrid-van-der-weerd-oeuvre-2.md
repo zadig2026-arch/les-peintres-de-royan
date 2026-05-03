@@ -6,6 +6,6 @@ image: /images/1000063309 2.jpg
 annee: ''
 technique: ''
 dimensions: ''
-serie: Fleurq
+serie: Fleurs
 ordre_serie: 1
 ---
