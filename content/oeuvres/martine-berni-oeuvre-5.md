@@ -1,6 +1,11 @@
 ---
 artiste_slug: martine-berni
-titre: nature morte
+titre: Baies sauvages
 slug: oeuvre-5
-image: /images/artistes/martine-berni/oeuvre-5.jpeg
+image: /images/IMG_6367.JPG
+annee: ''
+technique: ''
+dimensions: 50X36
+serie: ''
+ordre_serie: null
 ---
