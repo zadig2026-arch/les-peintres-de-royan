@@ -43,8 +43,8 @@ export default function Accueil() {
             <div className="space-y-3">
               <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
                 <Image
-                  src="/images/artistes/portraits/catherine-delcan.jpg"
-                  alt="Portrait de Catherine Delcan, fondatrice du collectif"
+                  src={page.accueil_image_1 ?? "/images/artistes/portraits/catherine-delcan.jpg"}
+                  alt="Photo d'accueil 1"
                   fill
                   priority
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -53,8 +53,8 @@ export default function Accueil() {
               </div>
               <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
                 <Image
-                  src="/images/artistes/portraits/claudine-mingot.jpg"
-                  alt="Portrait de Claudine Mingot"
+                  src={page.accueil_image_2 ?? "/images/artistes/portraits/claudine-mingot.jpg"}
+                  alt="Photo d'accueil 2"
                   fill
                   priority
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -65,8 +65,8 @@ export default function Accueil() {
             <div className="space-y-3 pt-8">
               <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
                 <Image
-                  src="/images/artistes/portraits/astrid-van-der-weerd.jpg"
-                  alt="Portrait d'Astrid Van der Weerd"
+                  src={page.accueil_image_3 ?? "/images/artistes/portraits/astrid-van-der-weerd.jpg"}
+                  alt="Photo d'accueil 3"
                   fill
                   priority
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -75,8 +75,8 @@ export default function Accueil() {
               </div>
               <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
                 <Image
-                  src="/images/artistes/portraits/odile-naulin.jpg"
-                  alt="Portrait d'Odile Naulin"
+                  src={page.accueil_image_4 ?? "/images/artistes/portraits/odile-naulin.jpg"}
+                  alt="Photo d'accueil 4"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover"

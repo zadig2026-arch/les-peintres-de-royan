@@ -127,6 +127,10 @@ collections:
           - { label: "Sous-titre", name: "hero_sous_titre", widget: "string" }
           - { label: "Image du hero", name: "hero_image", widget: "image" }
           - { label: "Texte de présentation", name: "section_presentation", widget: "markdown" }
+          - { label: "Photo 1 — grande, format vertical (en haut à gauche)", name: "accueil_image_1", widget: "image", required: false, hint: "S'affiche en grand format vertical (3/4) en haut à gauche de la mosaïque." }
+          - { label: "Photo 2 — format carré (en bas à gauche)", name: "accueil_image_2", widget: "image", required: false, hint: "S'affiche en carré sous la photo 1." }
+          - { label: "Photo 3 — format carré (en haut à droite)", name: "accueil_image_3", widget: "image", required: false, hint: "S'affiche en carré en haut à droite (légèrement décalée vers le bas)." }
+          - { label: "Photo 4 — grande, format vertical (en bas à droite)", name: "accueil_image_4", widget: "image", required: false, hint: "S'affiche en grand format vertical (3/4) sous la photo 3." }
 
       - label: "Le Collectif"
         name: "collectif"

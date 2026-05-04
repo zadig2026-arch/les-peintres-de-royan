@@ -52,6 +52,10 @@ export interface PageAccueil {
   hero_sous_titre: string;
   hero_image: string;
   section_presentation: string;
+  accueil_image_1?: string;
+  accueil_image_2?: string;
+  accueil_image_3?: string;
+  accueil_image_4?: string;
 }
 
 export interface PageCollectif {
