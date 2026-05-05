@@ -2,8 +2,10 @@
 artiste_slug: nicole-lesueur
 titre: Sorcières
 slug: oeuvre-15
-image: /images/artistes/nicole-lesueur/oeuvre-15.jpg
+image: /images/artistes/nicole-lesueur/oeuvre-2.jpg
+annee: ''
+technique: ''
 dimensions: 60x60 cm
-annee: 2024
 serie: Sorcières
+ordre_serie: null
 ---
