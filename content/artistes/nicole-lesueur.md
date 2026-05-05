@@ -2,7 +2,7 @@
 nom: Nicole Lesueur
 slug: nicole-lesueur
 role: Membre
-portrait: /images/Nilole Lesueur 2020.jpg
+portrait: /images/artistes/nicole-lesueur/oeuvre-6.jpg
 bio: |-
   Nicole Lesueur est membre du collectif Les Peintres de Royan.
   Les couleurs et les formes souvent abstraites transmettent une atmosphère, une vibration et invitent chacun à se raconter une histoire.
