@@ -6,6 +6,6 @@ image: /images/artistes/lise-thabaud/oeuvre-17.jpg
 annee: '2024'
 technique: ''
 dimensions: 50x65 cm
-serie: ''
-ordre_serie: 2
+serie: Projets divers
+ordre_serie: 4
 ---
