@@ -1,6 +1,6 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Vu de ma fenêtre
+titre: Le Cap
 slug: oeuvre-10
 image: /images/unnamed.jpg
 annee: '2024'
