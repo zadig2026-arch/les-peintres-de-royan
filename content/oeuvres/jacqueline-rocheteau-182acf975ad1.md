@@ -1,12 +1,12 @@
 ---
 artiste_slug: jacqueline-rocheteau
-titre: paysage
+titre: Fonds sous-marins
 slug: œuvre-2
 image: /images/20220526_172951.jpg
 annee: ''
-technique: ''
-dimensions: ''
+technique: acrylique et huile
+dimensions: 60 X 60
 serie: Eléments et paysages
-ordre_serie: null
+ordre_serie: 1
 mise_en_avant: false
 ---
