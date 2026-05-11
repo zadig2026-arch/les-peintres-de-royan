@@ -4,9 +4,9 @@ titre: Le fantôme bleu
 slug: oeuvre-3
 image: /images/IMG_6243 (1).jpg
 annee: ''
-technique: acrylique et huile
+technique: acrylique et huile sur toile
 dimensions: 100 X 80
 serie: Introspection
-ordre_serie: 2
+ordre_serie: 3
 mise_en_avant: false
 ---
