@@ -7,6 +7,6 @@ annee: ''
 technique: acrylique et huile
 dimensions: 100 X 80
 serie: Introspection
-ordre_serie: 3
+ordre_serie: 4
 mise_en_avant: false
 ---
