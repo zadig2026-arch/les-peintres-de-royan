@@ -7,5 +7,5 @@ annee: ''
 technique: acrylique et huile
 dimensions: 126 X 87
 serie: Introspection
-ordre_serie: 1
+ordre_serie: 2
 ---
