@@ -1,6 +1,6 @@
 ---
 artiste_slug: jacqueline-rocheteau
-titre: Ouragan Antilles
+titre: Irma
 slug: oeuvre-6
 image: /images/1000009473.jpg
 annee: ''
