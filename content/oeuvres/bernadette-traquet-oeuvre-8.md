@@ -4,7 +4,7 @@ titre: Étreinte charnelle
 slug: oeuvre-8
 image: /images/artistes/bernadette-traquet/oeuvre-8.jpg
 annee: ''
-technique: EAU FORTE
+technique: Eau forte
 dimensions: 40x60 cm
 serie: Eau forte
 ordre_serie: null
