@@ -12,7 +12,7 @@ techniques:
   - Gravure
 site_web: ''
 instagram: ''
-ordre: 28
+ordre: 6
 visible: true
 oeuvres: []
 ---
