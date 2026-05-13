@@ -6,6 +6,6 @@ image: /images/artistes/bernadette-traquet/oeuvre-12.jpg
 annee: ''
 technique: 'Collagraphie /COLLAGRAPHIE :  procédé par lequel on fabrique une matrice destinée à être imprimée en creux et/ou en relief, en créant des dénivellations par collage de matériaux divers. La matrice peut être créée sur un support soit en carton, soit en plastique'
 dimensions: 30x45 cm
-serie: ''
+serie: Collagraphie
 ordre_serie: null
 ---
