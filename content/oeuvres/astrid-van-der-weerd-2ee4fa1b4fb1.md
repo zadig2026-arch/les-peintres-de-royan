@@ -1,8 +1,8 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Femme africaine
+titre: Femme africaine 1
 slug: œuvre-6
-image: /images/1000063459.jpg
+image: /images/1000063425.jpg
 annee: ''
 technique: tehnique mixte
 dimensions: ''
