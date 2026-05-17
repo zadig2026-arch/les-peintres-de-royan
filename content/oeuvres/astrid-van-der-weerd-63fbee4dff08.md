@@ -6,7 +6,7 @@ image: /images/1000063146 2.jpg
 annee: ''
 technique: tecnique mixte
 dimensions: ''
-serie: Le ciel est bleu la mer aussi
+serie: Le ciel est bleu et la mer aussi
 ordre_serie: 2
 mise_en_avant: false
 ---
