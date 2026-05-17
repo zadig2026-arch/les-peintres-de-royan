@@ -1,6 +1,6 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Fleurs
+titre: Fleurs 1
 slug: oeuvre-1
 image: /images/1000063307.jpg
 annee: ''
