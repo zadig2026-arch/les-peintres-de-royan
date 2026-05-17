@@ -2,7 +2,7 @@
 artiste_slug: jacqueline-rocheteau
 titre: Fonds sous-marins
 slug: paysage-marin
-image: /images/20220526_172951.jpg
+image: /images/fonds marins.jpg
 annee: ''
 technique: acrylique et huile
 dimensions: 60 X 60
