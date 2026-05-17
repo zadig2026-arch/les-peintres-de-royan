@@ -7,5 +7,5 @@ annee: ''
 technique: ''
 dimensions: ''
 serie: Fleurs
-ordre_serie: 1
+ordre_serie: null
 ---
