@@ -7,6 +7,6 @@ annee: ''
 technique: technique mixte
 dimensions: ''
 serie: Le ciel est bleu  et la mer aussi
-ordre_serie: null
+ordre_serie: 3
 mise_en_avant: false
 ---
