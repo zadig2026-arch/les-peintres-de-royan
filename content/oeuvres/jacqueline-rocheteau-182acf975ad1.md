@@ -1,6 +1,6 @@
 ---
 artiste_slug: jacqueline-rocheteau
-titre: Fonds sous-marins
+titre: Fonds marins
 slug: paysage-marin
 image: /images/fonds marins.jpg
 annee: ''
