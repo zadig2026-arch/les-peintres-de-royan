@@ -7,6 +7,6 @@ annee: ''
 technique: tehnique mixte
 dimensions: ''
 serie: Femmes africaines
-ordre_serie: 1
+ordre_serie: null
 mise_en_avant: false
 ---
