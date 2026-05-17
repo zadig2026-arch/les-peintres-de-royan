@@ -1,0 +1,52 @@
+name: Compress images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/images/**"
+      - "scripts/compress-images.mjs"
+      - ".github/workflows/compress-images.yml"
+
+concurrency:
+  group: compress-images-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    # Skip if the previous commit was already this workflow, to avoid a loop.
+    if: "!contains(github.event.head_commit.message, '[skip-compress]')"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install sharp
+        run: npm install --no-save sharp
+
+      - name: Compress changed images
+        run: node scripts/compress-images.mjs
+
+      - name: Commit compressed images
+        run: |
+          if git diff --quiet -- public/images; then
+            echo "Aucune image à recompresser."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images
+          git commit -m "Compresse automatiquement les images ajoutées [skip-compress]"
+          git push
