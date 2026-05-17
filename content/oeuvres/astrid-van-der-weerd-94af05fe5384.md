@@ -1,6 +1,6 @@
 ---
 artiste_slug: astrid-van-der-weerd
-titre: Ciel et mer
+titre: Ciel et mer 1
 slug: oeuvre-10
 image: /images/1000063296 copie.jpg
 annee: ''
