@@ -1,6 +1,6 @@
 ---
 artiste_slug: bernard-devisme
-titre: statue
+titre: statue 1
 slug: oeuvre-2
 image: /images/unnamed (3).jpg
 annee: '?'
