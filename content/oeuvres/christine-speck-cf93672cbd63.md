@@ -1,6 +1,6 @@
 ---
 artiste_slug: christine-speck
-titre: Jardin 2
+titre: Le Jardin 2
 slug: oeuvre-7
 image: /images/christ.jpg
 annee: '2026'
