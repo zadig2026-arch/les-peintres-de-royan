@@ -1,6 +1,6 @@
 ---
 titre: Les CARMES de JONZAC
-slug: expo
+slug: 2026-06-carmes-jonzac
 lieu: JONZAC
 date_debut: 2026-06-24
 date_fin: 2026-07-05

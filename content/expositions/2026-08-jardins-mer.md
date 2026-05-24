@@ -1,6 +1,6 @@
 ---
 titre: Les jardins de la Mer
-slug: exo
+slug: 2026-08-jardins-mer
 lieu: ROYAN
 date_debut: 2026-08-22
 date_fin: 2026-08-23

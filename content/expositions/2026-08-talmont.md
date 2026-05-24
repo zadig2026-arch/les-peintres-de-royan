@@ -1,6 +1,6 @@
 ---
 titre: Presbytère de TALMONT Charente-Maritime
-slug: expo
+slug: 2026-08-talmont
 lieu: Talmont
 date_debut: 2026-08-01
 date_fin: 2026-08-07

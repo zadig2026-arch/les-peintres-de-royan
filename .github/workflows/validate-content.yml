@@ -1,0 +1,37 @@
+name: Validate content
+
+# Vérifie le contenu (slugs uniques, œuvres rattachées à un artiste existant,
+# images présentes) à chaque modification de content/. Ne bloque pas le
+# déploiement Vercel, mais signale les régressions via un check GitHub en échec.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "public/images/**"
+      - "scripts/validate-content.mjs"
+      - ".github/workflows/validate-content.yml"
+  pull_request:
+    paths:
+      - "content/**"
+      - "public/images/**"
+      - "scripts/validate-content.mjs"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Install gray-matter
+        run: npm install --no-save gray-matter
+
+      - name: Validate content
+        run: node scripts/validate-content.mjs
