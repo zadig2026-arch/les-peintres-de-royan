@@ -23,15 +23,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 2
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install sharp
         run: npm install --no-save sharp
@@ -49,4 +49,19 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/images
           git commit -m "Compresse automatiquement les images ajoutées [skip-compress]"
-          git push
+          # main bouge souvent (ajouts d'œuvres via l'admin) : si le push est refusé
+          # parce que la branche a avancé, on rebase et on réessaie.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Push réussi."
+              exit 0
+            fi
+            echo "Push refusé (main a bougé). Rebase et nouvelle tentative ($attempt/5)…"
+            if ! git pull --rebase origin main; then
+              git rebase --abort || true
+              echo "Conflit lors du rebase, abandon."
+              exit 1
+            fi
+          done
+          echo "Échec du push après 5 tentatives."
+          exit 1
