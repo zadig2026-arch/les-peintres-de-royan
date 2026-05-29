@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contactez Les Peintres de Royan : email, téléphone, réseaux sociaux et adresse de l'association à Royan (Charente-Maritime).",
+    "Contactez Les Peintres de Royan : email, téléphone et réseaux sociaux de l'association à Royan (Charente-Maritime).",
   alternates: { canonical: "/contact" },
 };
 
@@ -28,10 +28,6 @@ export default function Contact() {
             <a href={`tel:${page.telephone.replace(/\s/g, "")}`} className="text-charcoal hover:text-sienna transition-colors">
               {page.telephone}
             </a>
-          </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-3">Adresse</p>
-            <p className="text-charcoal-light whitespace-pre-line leading-relaxed">{page.adresse}</p>
           </div>
         </div>
 

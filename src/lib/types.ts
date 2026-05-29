@@ -75,7 +75,6 @@ export interface PageRejoindre {
 export interface PageContact {
   email: string;
   telephone: string;
-  adresse: string;
   facebook?: string;
   instagram?: string;
 }

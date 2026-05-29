@@ -156,6 +156,5 @@ collections:
         fields:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Téléphone", name: "telephone", widget: "string" }
-          - { label: "Adresse", name: "adresse", widget: "text" }
           - { label: "Lien Facebook", name: "facebook", widget: "string", required: false }
           - { label: "Lien Instagram", name: "instagram", widget: "string", required: false }
