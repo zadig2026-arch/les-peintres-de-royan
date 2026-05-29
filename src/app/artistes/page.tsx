@@ -23,7 +23,7 @@ export default function ArtistesPage() {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {artistes.map((a) => (
+        {artistes.map((a, i) => (
           <Link
             key={a.slug}
             href={`/artistes/${a.slug}`}
@@ -36,6 +36,8 @@ export default function ArtistesPage() {
                   alt={`Portrait de ${a.nom}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  fetchPriority={i < 3 ? "high" : "auto"}
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (

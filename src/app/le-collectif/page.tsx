@@ -26,7 +26,8 @@ export default function LeCollectif() {
             src="/images/expositions/vernissage-salle.jpg"
             alt="Vernissage d'une exposition des Peintres de Royan"
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="(max-width: 1024px) 100vw, 896px"
             className="object-cover"
           />

@@ -46,7 +46,8 @@ export default function Accueil() {
                   src={page.accueil_image_1 ?? "/images/artistes/portraits/catherine-delcan.jpg"}
                   alt="Photo d'accueil 1"
                   fill
-                  priority
+                  loading="eager"
+                  fetchPriority="high"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover"
                 />
@@ -56,7 +57,8 @@ export default function Accueil() {
                   src={page.accueil_image_2 ?? "/images/artistes/portraits/claudine-mingot.jpg"}
                   alt="Photo d'accueil 2"
                   fill
-                  priority
+                  loading="eager"
+                  fetchPriority="high"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover"
                 />
@@ -68,7 +70,8 @@ export default function Accueil() {
                   src={page.accueil_image_3 ?? "/images/artistes/portraits/astrid-van-der-weerd.jpg"}
                   alt="Photo d'accueil 3"
                   fill
-                  priority
+                  loading="eager"
+                  fetchPriority="high"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover"
                 />

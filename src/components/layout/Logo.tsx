@@ -9,7 +9,7 @@ export default function Logo() {
         alt=""
         width={36}
         height={36}
-        priority
+        loading="eager"
         className="w-9 h-9 rounded-sm object-cover"
       />
       <span className="font-serif text-sm tracking-wide text-charcoal leading-tight">

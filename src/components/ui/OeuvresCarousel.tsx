@@ -110,7 +110,8 @@ export default function OeuvresCarousel({ items }: Props) {
                   width={1200}
                   height={1600}
                   sizes="(max-width: 640px) 100vw, 80vw"
-                  priority={i < 2}
+                  loading={i < 2 ? "eager" : "lazy"}
+                  fetchPriority={i < 2 ? "high" : "auto"}
                   className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-sm mx-auto"
                 />
               </Link>

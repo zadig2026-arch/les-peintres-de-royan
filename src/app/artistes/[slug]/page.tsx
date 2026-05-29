@@ -104,7 +104,8 @@ export default async function ArtistePage({ params }: Props) {
                 src={artiste.portrait}
                 alt={`Portrait de ${artiste.nom}`}
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 className="object-cover"
               />

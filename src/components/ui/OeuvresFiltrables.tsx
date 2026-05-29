@@ -134,6 +134,8 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
                       width={600}
                       height={750}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                      loading={gi === 0 && i < 5 ? "eager" : "lazy"}
+                      fetchPriority={gi === 0 && i < 5 ? "high" : "auto"}
                       className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">

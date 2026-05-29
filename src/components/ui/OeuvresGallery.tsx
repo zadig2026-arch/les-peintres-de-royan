@@ -78,6 +78,8 @@ export default function OeuvresGallery({
                       width={800}
                       height={1000}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 400px"
+                      loading={sectionOffset + i < 3 ? "eager" : "lazy"}
+                      fetchPriority={sectionOffset + i < 3 ? "high" : "auto"}
                       className={IMAGE_CLASS[layout]}
                     />
                   </button>
