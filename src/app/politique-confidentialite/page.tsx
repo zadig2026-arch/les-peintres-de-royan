@@ -66,6 +66,27 @@ export default function PolitiqueConfidentialite() {
         </section>
 
         <section>
+          <h2 className="font-serif text-2xl text-charcoal mb-3">Newsletter</h2>
+          <p>
+            Si vous vous inscrivez à notre newsletter, votre adresse e-mail est
+            collectée avec votre consentement explicite et conservée chez notre
+            prestataire d&apos;emailing{" "}
+            <strong className="text-charcoal">Brevo</strong> (société française,
+            conforme au RGPD), à la seule fin de vous envoyer nos actualités,
+            expositions et événements. Elle n&apos;est ni revendue, ni partagée à
+            des tiers. Vous pouvez vous désinscrire à tout moment via le lien
+            présent en bas de chaque email, ou en nous écrivant à{" "}
+            <a
+              href="mailto:lespeintresderoyan@gmail.com"
+              className="text-sienna hover:underline"
+            >
+              lespeintresderoyan@gmail.com
+            </a>
+            .
+          </p>
+        </section>
+
+        <section>
           <h2 className="font-serif text-2xl text-charcoal mb-3">Hébergement & journaux techniques</h2>
           <p>
             Le site est hébergé par <strong className="text-charcoal">Vercel</strong>.

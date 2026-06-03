@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function Footer() {
   return (
@@ -9,10 +10,11 @@ export default function Footer() {
             <p className="font-serif text-xl text-charcoal mb-3">
               Les Peintres de Royan
             </p>
-            <p className="text-sm text-stone leading-relaxed max-w-sm">
+            <p className="text-sm text-stone leading-relaxed max-w-sm mb-8">
               Collectif de 23 artistes contemporains fondé en 2015.
               Royan, Charente-Maritime.
             </p>
+            <NewsletterForm variant="compact" />
           </div>
 
           <nav className="flex flex-col gap-1 text-sm" aria-label="Plan du site">

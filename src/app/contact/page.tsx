@@ -1,4 +1,5 @@
 import { getPageContact } from "@/lib/content";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -54,6 +55,10 @@ export default function Contact() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="mt-16">
+        <NewsletterForm variant="block" />
       </div>
     </div>
   );
