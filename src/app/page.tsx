@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/content";
+import NewsletterPopup from "@/components/ui/NewsletterPopup";
 
 export default function Accueil() {
   const page = getPageAccueil();
@@ -191,6 +192,8 @@ export default function Accueil() {
           </Link>
         </div>
       </section>
+
+      <NewsletterPopup />
     </>
   );
 }

@@ -11,6 +11,8 @@ type NewsletterFormProps = {
    */
   variant?: "compact" | "block";
   className?: string;
+  /** Appelé une fois l'inscription réussie (ex. pour fermer une pop-up). */
+  onSuccess?: () => void;
 };
 
 const MESSAGE_SUCCES =
@@ -21,6 +23,7 @@ const MESSAGE_ERREUR =
 export default function NewsletterForm({
   variant = "compact",
   className = "",
+  onSuccess,
 }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
@@ -53,6 +56,7 @@ export default function NewsletterForm({
         setMessage(data.message || MESSAGE_SUCCES);
         setEmail("");
         setConsent(false);
+        onSuccess?.();
       } else {
         setStatut("error");
         setMessage(data.error || MESSAGE_ERREUR);
