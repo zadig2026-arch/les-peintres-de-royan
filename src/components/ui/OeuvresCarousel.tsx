@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
-import Image from "next/image";
+import ArtworkImage from "./ArtworkImage";
 
 interface OeuvreAvecMeta {
   titre: string;
@@ -104,14 +104,13 @@ export default function OeuvresCarousel({ items }: Props) {
                 href={`/artistes/${oeuvre.artisteSlug}`}
                 className="block"
               >
-                <Image
+                <ArtworkImage
                   src={oeuvre.image}
                   alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
                   width={1200}
                   height={1600}
                   sizes="(max-width: 640px) 100vw, 80vw"
-                  loading={i < 2 ? "eager" : "lazy"}
-                  fetchPriority={i < 2 ? "high" : "auto"}
+                  eager={i < 2}
                   className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-sm mx-auto"
                 />
               </Link>
@@ -133,10 +132,10 @@ export default function OeuvresCarousel({ items }: Props) {
             </p>
           </Link>
           {current.titre && !current.titre.match(/^Oeuvre \d+$/i) && (
-            <p className="text-stone text-sm mt-0.5 italic">{current.titre}</p>
+            <p className="text-stone text-[15px] mt-0.5 italic">{current.titre}</p>
           )}
           {(current.technique || current.dimensions || current.annee) && (
-            <p className="text-stone/60 text-xs mt-1">
+            <p className="text-stone text-[13px] mt-1">
               {[current.technique, current.dimensions, current.annee]
                 .filter(Boolean)
                 .join(" — ")}
@@ -149,11 +148,11 @@ export default function OeuvresCarousel({ items }: Props) {
           <button
             onClick={scrollPrev}
             aria-label="Œuvre précédente"
-            className="text-stone hover:text-sienna transition-colors p-1.5"
+            className="text-charcoal-light hover:text-sienna transition-colors p-3"
           >
             <svg
-              width="18"
-              height="18"
+              width="22"
+              height="22"
               viewBox="0 0 18 18"
               fill="none"
               stroke="currentColor"
@@ -180,11 +179,11 @@ export default function OeuvresCarousel({ items }: Props) {
           <button
             onClick={scrollNext}
             aria-label="Œuvre suivante"
-            className="text-stone hover:text-sienna transition-colors p-1.5"
+            className="text-charcoal-light hover:text-sienna transition-colors p-3"
           >
             <svg
-              width="18"
-              height="18"
+              width="22"
+              height="22"
               viewBox="0 0 18 18"
               fill="none"
               stroke="currentColor"

@@ -1,5 +1,5 @@
 import { getArtisteBySlug, getArtisteSlugs, grouperOeuvresParSerie } from "@/lib/content";
-import Image from "next/image";
+import ArtworkImage from "@/components/ui/ArtworkImage";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import OeuvresGallery from "@/components/ui/OeuvresGallery";
@@ -100,14 +100,12 @@ export default async function ArtistePage({ params }: Props) {
         <div>
           <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream mb-6">
             {artiste.portrait ? (
-              <Image
+              <ArtworkImage
                 src={artiste.portrait}
                 alt={`Portrait de ${artiste.nom}`}
                 fill
-                loading="eager"
-                fetchPriority="high"
+                eager
                 sizes="(max-width: 1024px) 100vw, 33vw"
-                className="object-cover"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
@@ -124,14 +122,14 @@ export default async function ArtistePage({ params }: Props) {
 
           <div className="flex flex-wrap gap-2 mb-6">
             {artiste.techniques.map((t) => (
-              <span key={t} className="text-xs text-stone border border-stone/20 px-3 py-1 rounded-full">
+              <span key={t} className="text-[13px] text-charcoal-light border border-stone/25 px-3 py-1 rounded-full">
                 {t}
               </span>
             ))}
           </div>
 
           {artiste.site_web && (
-            <a href={artiste.site_web} target="_blank" rel="noopener noreferrer" className="block text-sm text-sienna hover:text-sienna-dark">
+            <a href={artiste.site_web} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 text-[15px] text-sienna hover:text-sienna-dark">
               Site web &#x2197;
             </a>
           )}
@@ -147,7 +145,7 @@ export default async function ArtistePage({ params }: Props) {
 
           {artiste.oeuvres.length > 0 ? (
             <>
-              <h2 className="text-xs uppercase tracking-[0.2em] text-stone mb-8">Oeuvres</h2>
+              <h2 className="text-[13px] uppercase tracking-[0.2em] text-stone mb-8">Oeuvres</h2>
               <OeuvresGallery
                 sections={grouperOeuvresParSerie(artiste.oeuvres, artiste.series_ordre)}
                 layout={artiste.mise_en_page_galerie ?? "masonry-2"}

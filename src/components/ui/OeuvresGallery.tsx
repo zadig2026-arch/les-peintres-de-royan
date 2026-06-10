@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, lazy, Suspense } from "react";
-import Image from "next/image";
+import ArtworkImage from "./ArtworkImage";
 import type { LayoutGalerie, Oeuvre } from "@/lib/types";
 import type { OeuvreSection } from "@/lib/content";
 
@@ -72,19 +72,18 @@ export default function OeuvresGallery({
                     onClick={() => setIndex(sectionOffset + i)}
                     aria-label={`Agrandir ${oeuvre.titre}`}
                   >
-                    <Image
+                    <ArtworkImage
                       src={oeuvre.image}
                       alt={oeuvre.titre}
                       width={800}
                       height={1000}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 400px"
-                      loading={sectionOffset + i < 3 ? "eager" : "lazy"}
-                      fetchPriority={sectionOffset + i < 3 ? "high" : "auto"}
+                      eager={sectionOffset + i < 3}
                       className={IMAGE_CLASS[layout]}
                     />
                   </button>
-                  <p className="text-sm text-charcoal mt-2">{oeuvre.titre}</p>
-                  <p className="text-xs text-stone">
+                  <p className="text-[15px] text-charcoal mt-2">{oeuvre.titre}</p>
+                  <p className="text-[13px] text-stone">
                     {[oeuvre.technique, oeuvre.dimensions, oeuvre.annee].filter(Boolean).join(" — ")}
                   </p>
                 </div>

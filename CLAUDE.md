@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run dev` — Next.js dev server on http://localhost:3000
 - `npm run build` — production build
 - `npm run lint` — ESLint (uses `eslint-config-next`)
-- `node scripts/compress-images.mjs` — resize/recompress everything under `public/images/` in place (max 1600px, JPEG q80 via mozjpeg, idempotent — skips files already under ~350 KB and rejects results that would grow the file)
+- `node scripts/compress-images.mjs` — resize/recompress everything under `public/images/` in place (max 1600px, JPEG q80 via mozjpeg, idempotent — skips files already under ~350 KB and rejects results that would grow the file). Also generates the responsive WebP thumbnails under `public/images/_thumbs/` (480px + 960px per original, pruned when the original disappears)
 
 No test suite exists in this project.
 
@@ -42,6 +42,8 @@ Types for every collection are in `src/lib/types.ts` and mirror the Sveltia sche
 - **CI fallback**: `.github/workflows/compress-images.yml` triggers on any push that touches `public/images/`, runs the same script, and pushes a follow-up commit tagged `[skip-compress]` (the marker breaks the recursion). Requires the repo's *Workflow permissions* to be set to *Read and write*.
 
 Do **not** re-enable `next/image` optimization without first migrating images off the repo (Blob/Cloudinary) — the quota will explode again.
+
+**Responsive thumbnails.** Because `unoptimized: true` strips srcset generation, gallery images go through `src/components/ui/ArtworkImage.tsx`, a plain `<img>` that builds a real `srcset` from the WebP thumbnails in `public/images/_thumbs/` (`/images/<p>/<f>` → `/images/_thumbs/<p>/<f>.w480.webp` + `.w960.webp` + original as the 1600w candidate, URLs encoded because many CMS uploads contain spaces/accents). URL helpers live in `src/lib/img.ts`; keep its `THUMB_WIDTHS` in sync with `THUMB_VARIANTS` in the script. If a thumbnail 404s (admin upload deployed before the compress-images CI run pushed its follow-up commit), `ArtworkImage` falls back to the original file via `onError`. Lightboxes intentionally load the original full-size file.
 
 ## Deployment
 

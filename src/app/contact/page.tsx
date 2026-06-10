@@ -19,14 +19,14 @@ export default function Contact() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
         <div className="space-y-10">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-3">Email</p>
-            <a href={`mailto:${page.email}`} className="text-charcoal hover:text-sienna transition-colors">
+            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-2">Email</p>
+            <a href={`mailto:${page.email}`} className="inline-flex items-center min-h-11 text-charcoal hover:text-sienna transition-colors break-all">
               {page.email}
             </a>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-3">Téléphone</p>
-            <a href={`tel:${page.telephone.replace(/\s/g, "")}`} className="text-charcoal hover:text-sienna transition-colors">
+            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-2">Téléphone</p>
+            <a href={`tel:${page.telephone.replace(/\s/g, "")}`} className="inline-flex items-center min-h-11 text-charcoal hover:text-sienna transition-colors">
               {page.telephone}
             </a>
           </div>
@@ -34,15 +34,15 @@ export default function Contact() {
 
         <div className="space-y-10">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-3">Réseaux</p>
-            <div className="space-y-2">
+            <p className="text-xs uppercase tracking-[0.2em] text-sienna mb-2">Réseaux</p>
+            <div>
               {page.facebook && (
-                <a href={page.facebook} target="_blank" rel="noopener noreferrer" className="block text-charcoal hover:text-sienna transition-colors">
+                <a href={page.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center min-h-11 text-charcoal hover:text-sienna transition-colors">
                   Facebook &#x2197;
                 </a>
               )}
               {page.instagram && (
-                <a href={page.instagram} target="_blank" rel="noopener noreferrer" className="block text-charcoal hover:text-sienna transition-colors">
+                <a href={page.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center min-h-11 text-charcoal hover:text-sienna transition-colors">
                   Instagram &#x2197;
                 </a>
               )}

@@ -4,8 +4,10 @@
   --color-linen: #F5F0EB;
   --color-charcoal: #2C2824;
   --color-charcoal-light: #5A534D;
-  --color-stone: #A89B8C;
-  --color-sienna: #C4572A;
+  /* stone et sienna sont calés pour un contraste AA (≥4.5:1) sur fond linen,
+     public senior oblige. Ne pas les éclaircir sans revérifier. */
+  --color-stone: #776B5E;
+  --color-sienna: #B04E22;
   --color-sienna-light: #D4714E;
   --color-sienna-dark: #A3451E;
   --color-teal: #1B6B5A;
@@ -79,11 +81,13 @@ body::before {
 .embla__viewport--vertical { overflow: hidden; }
 .embla__container--vertical { display: flex; flex-direction: column; }
 
-/* Slow, gentle transitions */
+/* Slow, gentle transitions — propriétés ciblées : `all` animait aussi le
+   layout des images au chargement (coût de rendu, effets parasites). */
 a, button {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, opacity 0.3s ease;
 }
 
 img {
-  transition: all 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }

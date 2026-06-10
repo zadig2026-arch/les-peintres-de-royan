@@ -73,12 +73,12 @@ export default function NewsletterPopup() {
         shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      <div className="relative bg-white border border-stone/15 rounded-xl shadow-xl p-6 pr-10">
+      <div className="relative bg-white border border-stone/15 rounded-xl shadow-xl p-6 pr-12">
         <button
           type="button"
           onClick={dismiss}
           aria-label="Fermer"
-          className="absolute top-3 right-3 h-7 w-7 flex items-center justify-center rounded-full text-stone hover:text-charcoal hover:bg-cream transition-colors text-lg leading-none"
+          className="absolute top-1.5 right-1.5 h-11 w-11 flex items-center justify-center rounded-full text-charcoal-light hover:text-charcoal hover:bg-cream transition-colors text-2xl leading-none"
         >
           &times;
         </button>

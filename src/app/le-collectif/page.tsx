@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ArtworkImage from "@/components/ui/ArtworkImage";
 import { getPageCollectif } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -22,14 +22,12 @@ export default function LeCollectif() {
 
         {/* Hero photo — vernissage */}
         <div className="aspect-[16/9] relative rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
-          <Image
+          <ArtworkImage
             src="/images/expositions/vernissage-salle.jpg"
             alt="Vernissage d'une exposition des Peintres de Royan"
             fill
-            loading="eager"
-            fetchPriority="high"
+            eager
             sizes="(max-width: 1024px) 100vw, 896px"
-            className="object-cover"
           />
         </div>
 
@@ -50,7 +48,7 @@ export default function LeCollectif() {
 
         {/* Photo groupe — expo Cinéma Le Lido */}
         <div className="rounded-sm overflow-hidden bg-cream mb-20 -mx-6 sm:mx-0">
-          <Image
+          <ArtworkImage
             src="/images/expositions/groupe-cinema-lido.jpg"
             alt="Les Peintres de Royan exposant au cinéma Le Lido"
             width={1600}
@@ -65,21 +63,19 @@ export default function LeCollectif() {
           <h2 className="text-xs uppercase tracking-[0.2em] text-sienna mb-6 font-sans font-normal">Nos ateliers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 -mx-6 sm:mx-0">
             <div className="aspect-[4/3] relative rounded-sm overflow-hidden bg-cream">
-              <Image
+              <ArtworkImage
                 src="/images/association/nos-ateliers-1.jpg"
                 alt="Atelier des Peintres de Royan — vue d'ensemble"
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
-                className="object-cover"
               />
             </div>
             <div className="aspect-[4/3] relative rounded-sm overflow-hidden bg-cream">
-              <Image
+              <ArtworkImage
                 src="/images/association/nos-ateliers-2.jpg"
                 alt="Atelier des Peintres de Royan — détail"
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
-                className="object-cover"
               />
             </div>
           </div>

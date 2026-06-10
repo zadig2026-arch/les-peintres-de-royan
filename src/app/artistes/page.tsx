@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getAllArtistes } from "@/lib/content";
+import ArtworkImage from "@/components/ui/ArtworkImage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,14 +31,13 @@ export default function ArtistesPage() {
           >
             <div className="aspect-[4/3] relative overflow-hidden bg-stone/10 mb-4">
               {a.portrait ? (
-                <Image
+                <ArtworkImage
                   src={a.portrait}
                   alt={`Portrait de ${a.nom}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading={i < 3 ? "eager" : "lazy"}
-                  fetchPriority={i < 3 ? "high" : "auto"}
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  eager={i < 3}
+                  className="transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
@@ -51,7 +50,7 @@ export default function ArtistesPage() {
             <h2 className="font-serif text-xl text-charcoal group-hover:text-sienna transition-colors">
               {a.nom}
             </h2>
-            <p className="text-sm text-stone mt-1">
+            <p className="text-[15px] text-stone mt-1">
               {a.techniques.join(", ")}
             </p>
           </Link>

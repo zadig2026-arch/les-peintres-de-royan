@@ -32,10 +32,10 @@ export default function Breadcrumbs({ items }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="Fil d'Ariane" className="text-xs text-stone">
+      <nav aria-label="Fil d'Ariane" className="text-[13px] text-stone">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/" className="hover:text-sienna transition-colors">
+            <Link href="/" className="inline-block py-2 hover:text-sienna transition-colors">
               Accueil
             </Link>
           </li>
@@ -45,7 +45,7 @@ export default function Breadcrumbs({ items }: Props) {
                 /
               </span>
               {c.href && i < items.length - 1 ? (
-                <Link href={c.href} className="hover:text-sienna transition-colors">
+                <Link href={c.href} className="inline-block py-2 hover:text-sienna transition-colors">
                   {c.label}
                 </Link>
               ) : (

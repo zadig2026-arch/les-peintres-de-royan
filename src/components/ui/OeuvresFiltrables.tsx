@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import ArtworkImage from "./ArtworkImage";
 import OeuvresCarousel from "./OeuvresCarousel";
+
+const LazyLightbox = lazy(() => import("./OeuvresLightbox"));
 
 interface OeuvreAvecMeta {
   titre: string;
@@ -23,9 +25,14 @@ interface Props {
   oeuvres: OeuvreAvecMeta[];
 }
 
+function titreGenerique(titre: string): boolean {
+  return /^Oeuvre \d+$/i.test(titre);
+}
+
 export default function OeuvresFiltrables({ oeuvres }: Props) {
   const [modeTri, setModeTri] = useState<ModeTri>("tous");
   const [modeVue, setModeVue] = useState<ModeVue>("grille");
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
 
   const groupes = useMemo(() => {
     if (modeTri === "tous") {
@@ -52,9 +59,40 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
     return entries.map(([label, items]) => ({ label, items }));
   }, [oeuvres, modeTri]);
 
+  // Liste aplatie dans l'ordre d'affichage : la lightbox permet de zoomer et
+  // de feuilleter au doigt, là où un tap navigait vers la page artiste sans
+  // prévenir. Le lien vers l'artiste vit désormais dans la légende.
+  const { slides, offsets } = useMemo(() => {
+    const flat = groupes.flatMap((g) => g.items);
+    const offs = groupes.reduce<number[]>((acc, g, i) => {
+      acc.push(i === 0 ? 0 : acc[i - 1] + groupes[i - 1].items.length);
+      return acc;
+    }, []);
+    return {
+      slides: flat.map((o) => ({
+        src: o.image,
+        alt: `${o.titre} — ${o.artisteNom}`,
+        title: titreGenerique(o.titre) ? o.artisteNom : o.titre,
+        description: (
+          <span>
+            {[o.technique, o.dimensions, o.annee].filter(Boolean).join(" — ")}
+            {[o.technique, o.dimensions, o.annee].some(Boolean) && <br />}
+            <Link
+              href={`/artistes/${o.artisteSlug}`}
+              className="inline-block py-2 underline underline-offset-4 hover:text-white"
+            >
+              Voir la page de {o.artisteNom} &rarr;
+            </Link>
+          </span>
+        ),
+      })),
+      offsets: offs,
+    };
+  }, [groupes]);
+
   const pillBase =
-    "text-xs px-3 py-1.5 rounded-full transition-colors cursor-pointer whitespace-nowrap";
-  const pillInactif = `${pillBase} text-stone border border-stone/20 hover:border-sienna/50`;
+    "inline-flex items-center min-h-11 text-sm px-4 py-2 rounded-full transition-colors cursor-pointer whitespace-nowrap";
+  const pillInactif = `${pillBase} text-charcoal-light border border-stone/30 hover:border-sienna/50`;
   const pillActif = `${pillBase} text-white bg-sienna border border-sienna`;
 
   return (
@@ -63,7 +101,7 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
       <div className="flex items-center justify-between gap-4 flex-wrap mb-10">
         {/* Tri à gauche */}
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-stone/60 uppercase tracking-wider mr-1">
+          <span className="text-xs text-stone uppercase tracking-wider mr-1">
             Trier par
           </span>
           <button
@@ -88,7 +126,7 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
 
         {/* Affichage à droite */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-stone/60 uppercase tracking-wider mr-1">
+          <span className="text-xs text-stone uppercase tracking-wider mr-1">
             Affichage
           </span>
           <button
@@ -123,39 +161,50 @@ export default function OeuvresFiltrables({ oeuvres }: Props) {
 
               <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-1.5">
                 {groupe.items.map((oeuvre, i) => (
-                  <Link
+                  <button
                     key={`${oeuvre.artisteSlug}-${oeuvre.titre}-${i}`}
-                    href={`/artistes/${oeuvre.artisteSlug}`}
-                    className="group relative block mb-1.5 break-inside-avoid rounded-sm overflow-hidden bg-cream"
+                    type="button"
+                    onClick={() => setLightboxIndex(offsets[gi] + i)}
+                    aria-label={`Agrandir ${oeuvre.titre} de ${oeuvre.artisteNom}`}
+                    className="group relative block w-full mb-1.5 break-inside-avoid rounded-sm overflow-hidden bg-cream cursor-zoom-in text-left"
                   >
-                    <Image
+                    <ArtworkImage
                       src={oeuvre.image}
                       alt={`${oeuvre.titre} — ${oeuvre.artisteNom}`}
                       width={600}
                       height={750}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-                      loading={gi === 0 && i < 5 ? "eager" : "lazy"}
-                      fetchPriority={gi === 0 && i < 5 ? "high" : "auto"}
+                      eager={gi === 0 && i < 5}
                       className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                    <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 pointer-events-none">
                       <div>
                         <p className="text-white text-sm font-serif leading-tight">
                           {oeuvre.artisteNom}
                         </p>
-                        {oeuvre.titre &&
-                          !oeuvre.titre.match(/^Oeuvre \d+$/i) && (
-                            <p className="text-white/70 text-xs mt-0.5">
-                              {oeuvre.titre}
-                            </p>
-                          )}
+                        {oeuvre.titre && !titreGenerique(oeuvre.titre) && (
+                          <p className="text-white/80 text-xs mt-0.5">
+                            {oeuvre.titre}
+                          </p>
+                        )}
                       </div>
                     </div>
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
+
+          {lightboxIndex >= 0 && (
+            <Suspense fallback={null}>
+              <LazyLightbox
+                open
+                index={lightboxIndex}
+                close={() => setLightboxIndex(-1)}
+                slides={slides}
+              />
+            </Suspense>
+          )}
         </>
       ) : (
         <OeuvresCarousel

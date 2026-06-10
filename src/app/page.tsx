@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/content";
+import ArtworkImage from "@/components/ui/ArtworkImage";
 import NewsletterPopup from "@/components/ui/NewsletterPopup";
 
 export default function Accueil() {
@@ -43,47 +43,40 @@ export default function Accueil() {
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
-                <Image
+                <ArtworkImage
                   src={page.accueil_image_1 ?? "/images/artistes/portraits/catherine-delcan.jpg"}
                   alt="Photo d'accueil 1"
                   fill
-                  loading="eager"
-                  fetchPriority="high"
+                  eager
                   sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
                 />
               </div>
               <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
-                <Image
+                <ArtworkImage
                   src={page.accueil_image_2 ?? "/images/artistes/portraits/claudine-mingot.jpg"}
                   alt="Photo d'accueil 2"
                   fill
-                  loading="eager"
-                  fetchPriority="high"
+                  eager
                   sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
                 />
               </div>
             </div>
             <div className="space-y-3 pt-8">
               <div className="aspect-square relative rounded-sm overflow-hidden bg-cream">
-                <Image
+                <ArtworkImage
                   src={page.accueil_image_3 ?? "/images/artistes/portraits/astrid-van-der-weerd.jpg"}
                   alt="Photo d'accueil 3"
                   fill
-                  loading="eager"
-                  fetchPriority="high"
+                  eager
                   sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
                 />
               </div>
               <div className="aspect-[3/4] relative rounded-sm overflow-hidden bg-cream">
-                <Image
+                <ArtworkImage
                   src={page.accueil_image_4 ?? "/images/artistes/portraits/odile-naulin.jpg"}
                   alt="Photo d'accueil 4"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
                 />
               </div>
             </div>
@@ -95,7 +88,7 @@ export default function Accueil() {
       {expos.length > 0 && (
         <section className="bg-[#2C2420] text-white/90">
           <div className="max-w-7xl mx-auto px-6 py-10 sm:py-14">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-sienna mb-6">
+            <p className="text-xs uppercase tracking-[0.25em] text-sienna-light mb-6">
               {expos.length === 1 ? "Prochaine exposition" : "Prochaines expositions"}
             </p>
             <div className="space-y-6">
@@ -105,17 +98,17 @@ export default function Accueil() {
                   href={`/expositions/${expo.slug}`}
                   className="group block sm:flex sm:items-baseline sm:gap-8 py-4 border-b border-white/10 last:border-0 hover:border-sienna/30 transition-colors"
                 >
-                  <h3 className="font-serif text-xl sm:text-2xl group-hover:text-sienna transition-colors">
+                  <h2 className="font-serif text-xl sm:text-2xl group-hover:text-sienna-light transition-colors">
                     {expo.titre}
-                  </h3>
-                  <div className="flex flex-wrap gap-x-6 gap-y-1 mt-2 sm:mt-0 text-sm text-white/60">
+                  </h2>
+                  <div className="flex flex-wrap gap-x-6 gap-y-1 mt-2 sm:mt-0 text-sm text-white/75">
                     <span>
                       {new Date(expo.date_debut).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
                       {" — "}
                       {new Date(expo.date_fin).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" })}
                     </span>
                     <span>{expo.lieu.split(",")[0]}</span>
-                    {expo.entree_libre && <span className="text-sienna">Entrée libre</span>}
+                    {expo.entree_libre && <span className="text-sienna-light">Entrée libre</span>}
                   </div>
                 </Link>
               ))}
@@ -123,7 +116,7 @@ export default function Accueil() {
             {expos.length > 3 && (
               <Link
                 href="/expositions"
-                className="inline-block mt-8 text-sienna text-sm tracking-wide uppercase font-medium hover:text-white transition-colors"
+                className="inline-flex items-center min-h-11 mt-4 text-sienna-light text-sm tracking-wide uppercase font-medium hover:text-white transition-colors"
               >
                 Toutes les expositions &rarr;
               </Link>
@@ -166,7 +159,7 @@ export default function Accueil() {
           {artistes.length > 12 && (
             <Link
               href="/artistes"
-              className="inline-block mt-10 text-sienna hover:text-sienna-dark text-sm tracking-wide uppercase font-medium"
+              className="inline-flex items-center min-h-11 mt-6 text-sienna hover:text-sienna-dark text-sm tracking-wide uppercase font-medium"
             >
               Voir les {artistes.length} artistes &rarr;
             </Link>
@@ -180,7 +173,7 @@ export default function Accueil() {
           <h2 className="font-serif text-3xl sm:text-4xl mb-4">
             Vous êtes artiste ?
           </h2>
-          <p className="text-stone text-lg mb-10 max-w-lg mx-auto">
+          <p className="text-linen/85 text-lg mb-10 max-w-lg mx-auto">
             Le collectif accueille de nouveaux talents. Peinture, sculpture,
             gravure — rejoignez un groupe passionné.
           </p>

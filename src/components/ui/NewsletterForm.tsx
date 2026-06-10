@@ -71,12 +71,12 @@ export default function NewsletterForm({
     "w-full px-4 py-2.5 rounded-lg border border-stone/15 bg-linen text-charcoal placeholder:text-charcoal-light/40 focus:outline-none focus:ring-2 focus:ring-sienna/30 focus:border-sienna transition-colors";
 
   const consentField = (
-    <label className="flex items-start gap-2.5 text-xs text-charcoal-light leading-relaxed cursor-pointer">
+    <label className="flex items-start gap-3 text-[13px] text-charcoal-light leading-relaxed cursor-pointer">
       <input
         type="checkbox"
         checked={consent}
         onChange={(e) => setConsent(e.target.checked)}
-        className="mt-0.5 h-4 w-4 shrink-0 accent-sienna"
+        className="mt-0.5 h-5 w-5 shrink-0 accent-sienna"
         aria-describedby="newsletter-consent-text"
       />
       <span id="newsletter-consent-text">
@@ -150,7 +150,7 @@ export default function NewsletterForm({
       <p className="text-xs uppercase tracking-[0.15em] text-stone mb-2">
         Newsletter
       </p>
-      <p className="text-sm text-charcoal-light leading-relaxed mb-3 max-w-sm">
+      <p className="text-[15px] text-charcoal-light leading-relaxed mb-3 max-w-sm">
         Expositions et événements de l&apos;association, directement par email.
       </p>
       <form onSubmit={handleSubmit} className="space-y-3 max-w-sm">
