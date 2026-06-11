@@ -9,6 +9,7 @@ statut: a-venir
 entree_libre: true
 image_principale: /images/Le Cloître - (78x74) Coggia 2.jpg
 description: Les Peintres de Royan illuminent de nouveau ce magnifique site.
-photos_galerie: []
+photos_galerie:
+  - /images/Le Cloître - (78x74) Coggia 2.jpg
 visible: true
 ---
