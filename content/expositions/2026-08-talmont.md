@@ -9,6 +9,7 @@ statut: a-venir
 entree_libre: true
 image_principale: /images/artistes/yamina-laurencon/oeuvre-10.jpg
 description: Les peintres de Royan de retour à Talmont pour le régal des touristes en visite dans ce lieu emblématique de Charente-Maritime.
-photos_galerie: []
+photos_galerie:
+  - /images/artistes/yamina-laurencon/oeuvre-10.jpg
 visible: true
 ---
