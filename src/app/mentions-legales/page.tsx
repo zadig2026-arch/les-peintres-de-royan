@@ -77,7 +77,9 @@ export default function MentionsLegales() {
           <p>
             Conception et développement du site :{" "}
             <a
-              href="mailto:zadig2026@gmail.com"
+              href="https://zadig.pro"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sienna hover:underline"
             >
               Zadig

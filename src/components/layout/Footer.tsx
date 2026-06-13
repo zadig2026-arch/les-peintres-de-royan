@@ -68,7 +68,9 @@ export default function Footer() {
           <span className="py-3">
             Site par{" "}
             <a
-              href="mailto:zadig2026@gmail.com"
+              href="https://zadig.pro"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block py-3 -my-3 hover:text-sienna transition-colors underline-offset-2 hover:underline"
             >
               Zadig
