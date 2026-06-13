@@ -65,7 +65,7 @@ export default function Footer() {
           <Link href="/politique-confidentialite" className="inline-flex items-center min-h-11 hover:text-sienna transition-colors">
             Confidentialité
           </Link>
-          <span className="py-3">
+          <span className="py-3 ml-auto">
             Site par{" "}
             <a
               href="https://zadig.pro"
