@@ -66,7 +66,7 @@ export default function Footer() {
             Confidentialité
           </Link>
           <span className="py-3 ml-auto">
-            Site par{" "}
+            Site réalisé par{" "}
             <a
               href="https://zadig.pro"
               target="_blank"
@@ -75,6 +75,7 @@ export default function Footer() {
             >
               Zadig
             </a>
+            *
           </span>
         </div>
       </div>
