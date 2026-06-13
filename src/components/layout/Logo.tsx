@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function Logo() {
   return (
     <Link href="/" className="group flex items-center gap-3" aria-label="Les Peintres de Royan — retour à l'accueil">
-      {/* icon-192.png (6 Ko) plutôt que logo-pr.jpg (52 Ko) : même visuel, chargé sur toutes les pages */}
+      {/* logo-r.svg (vectoriel, ~9 Ko) : net à toute densité d'écran, chargé sur toutes les pages */}
       <Image
-        src="/images/site/icon-192.png"
+        src="/images/site/logo-r.svg"
         alt=""
         width={36}
         height={36}
