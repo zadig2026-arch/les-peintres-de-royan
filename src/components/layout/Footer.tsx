@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NewsletterForm from "@/components/ui/NewsletterForm";
+import CompteurVisites from "@/components/ui/CompteurVisites";
 
 export default function Footer() {
   return (
@@ -65,6 +66,7 @@ export default function Footer() {
           <Link href="/politique-confidentialite" className="inline-flex items-center min-h-11 hover:text-sienna transition-colors">
             Confidentialité
           </Link>
+          <CompteurVisites />
           <span className="py-3 ml-auto">
             Site réalisé par{" "}
             <a

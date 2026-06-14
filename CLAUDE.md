@@ -30,6 +30,10 @@ Sveltia sometimes serializes typed list fields as `[{nom: "Foo"}, ...]`; `normal
 
 Types for every collection are in `src/lib/types.ts` and mirror the Sveltia schema in `public/admin/config.yml`. **When you change a frontmatter shape, update both files together** or the admin will silently drop fields.
 
+## Compteur de visites
+
+Seule entorse au « no database » ci-dessus : le pied de page affiche un compteur de visites stocké dans une unique clé Upstash Redis (`visites:total`), incrémentée par la route `src/app/api/visites/route.ts` (API REST Upstash en `fetch` direct, pas de SDK ni de dépendance ajoutée). Le composant client `CompteurVisites` n'incrémente qu'une fois par session (marqueur `sessionStorage`) et se masque entièrement si le service n'est pas configuré ou répond en erreur. Variables d'env : `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` (repli `KV_REST_API_*` pour l'ancienne intégration Vercel KV), plus `VISITES_OFFSET` optionnel (base ajoutée au total affiché). Cf. `.env.example`.
+
 ## Admin (Sveltia CMS)
 
 `/admin` serves a static Sveltia CMS page that authenticates against a Cloudflare Worker (`sveltia-cms-auth.zadig2026.workers.dev`) and commits directly to `main` via the GitHub backend. Media uploads go to `public/images/` and are referenced with `/images/...` paths. Most commits on `main` come from the bot user `lespeintresderoyan-bit`, not from a developer — expect frequent unrelated updates when pulling.
