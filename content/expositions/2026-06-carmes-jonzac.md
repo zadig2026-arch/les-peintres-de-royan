@@ -5,7 +5,7 @@ lieu: JONZAC
 date_debut: 2026-06-24
 date_fin: 2026-07-05
 horaires: 14h30-18h30
-statut: a-venir
+statut: en-cours
 entree_libre: true
 image_principale: /images/Le Cloître - (78x74) Coggia 2.jpg
 description: Les Peintres de Royan illuminent de nouveau ce magnifique site.
