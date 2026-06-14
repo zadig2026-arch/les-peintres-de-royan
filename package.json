@@ -10,6 +10,7 @@
     "validate": "node scripts/validate-content.mjs"
   },
   "dependencies": {
+    "@sanity/client": "^7.22.1",
     "@vercel/analytics": "^2.0.1",
     "embla-carousel-react": "^8.6.0",
     "gray-matter": "^4.0.3",

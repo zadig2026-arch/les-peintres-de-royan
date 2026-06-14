@@ -28,7 +28,9 @@ export default function CompteurVisites() {
       }
 
       try {
-        const res = await fetch("/api/visites", {
+        // Appel via /ln (réécrit vers /api/visites) pour passer sous le radar
+        // des bloqueurs de pub.
+        const res = await fetch("/ln", {
           method: dejaCompte ? "GET" : "POST",
         });
         if (!res.ok) return;

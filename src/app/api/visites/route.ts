@@ -1,91 +1,83 @@
 import { NextResponse } from "next/server";
 
-// Compteur de visites du site. Le total est stocké dans Upstash Redis (une seule
-// clé entière, incrémentée à chaque nouvelle visite) et lu via l'API REST
-// Upstash en `fetch` direct, comme la route newsletter avec Brevo : aucune
-// dépendance npm supplémentaire.
+import { writeClient } from "@/lib/sanity";
+
+// Compteur de visites — stockage Sanity (document `visitCounter`, hors Studio),
+// même approche que les sites GPPR et Bernard Devisme. Le site n'a pas d'autre
+// contenu Sanity ; tout le reste vit en markdown sous content/.
 //
-// Variables d'environnement attendues (cf. .env.example) :
-//   UPSTASH_REDIS_REST_URL    (obligatoire) — injecté par l'intégration Upstash sur Vercel
-//   UPSTASH_REDIS_REST_TOKEN  (obligatoire) — idem
-//   VISITES_OFFSET            (optionnel) — base ajoutée au total affiché, pour ne
-//                              pas repartir de 0 sur un site déjà en ligne (défaut 0)
+// POST : enregistre une visite (incrémente le total) et renvoie { ok, total }.
+// GET  : lit le total sans l'incrémenter.
 //
-// Pour rester compatible avec l'ancienne intégration Vercel KV, les noms
-// KV_REST_API_URL / KV_REST_API_TOKEN sont acceptés en repli.
+// La déduplication (une visite par session) est gérée côté client
+// (CompteurVisites, marqueur sessionStorage). Sans token Sanity, le client vaut
+// null, la route répond 503 et le compteur reste masqué dans le pied de page.
 //
-// Tant que l'URL et le token ne sont pas renseignés, la route répond 503 et le
-// compteur reste simplement masqué côté visiteur (aucune erreur affichée).
+// Appelée publiquement via le rewrite /ln (next.config.ts) pour échapper aux
+// bloqueurs de pub qui filtrent les URLs contenant « visit ».
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CLE = "visites:total";
+const DOC_ID = "visitCounter";
+
+type CounterDoc = { total?: number };
 
 function offset(): number {
   const brut = Number(process.env.VISITES_OFFSET);
   return Number.isFinite(brut) ? brut : 0;
 }
 
-type Resultat =
-  | { statut: "non-configure" }
-  | { statut: "erreur" }
-  | { statut: "ok"; valeur: number };
-
-// Exécute une commande sur l'API REST Upstash, ex. `incr/visites:total` ou
-// `get/visites:total`. Renvoie la valeur entière, ou un statut d'échec.
-async function upstash(commande: string): Promise<Resultat> {
-  const url =
-    process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-  const token =
-    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
-
-  if (!url || !token) return { statut: "non-configure" };
-
-  try {
-    const res = await fetch(`${url}/${commande}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      console.error("Compteur : réponse Upstash", res.status);
-      return { statut: "erreur" };
-    }
-
-    const data = (await res.json()) as { result?: number | string | null };
-    // `incr` renvoie un number ; `get` une string, ou null si la clé n'existe
-    // pas encore (premier passage) — traité comme 0.
-    const valeur = data.result == null ? 0 : Number(data.result);
-    return { statut: "ok", valeur: Number.isFinite(valeur) ? valeur : 0 };
-  } catch (err) {
-    console.error("Compteur : échec de l'appel Upstash", err);
-    return { statut: "erreur" };
-  }
+async function lireTotal(): Promise<number> {
+  const doc = await writeClient!.fetch<CounterDoc | null>(
+    `*[_id == $id][0]{total}`,
+    { id: DOC_ID }
+  );
+  return doc?.total ?? 0;
 }
 
-function reponse(r: Resultat) {
-  if (r.statut === "non-configure") {
+export async function GET() {
+  if (!writeClient) {
     return NextResponse.json(
       { ok: false, error: "Compteur non configuré." },
       { status: 503 }
     );
   }
-  if (r.statut === "erreur") {
+  try {
+    return NextResponse.json({ ok: true, total: (await lireTotal()) + offset() });
+  } catch {
     return NextResponse.json(
       { ok: false, error: "Compteur momentanément indisponible." },
       { status: 502 }
     );
   }
-  return NextResponse.json({ ok: true, total: r.valeur + offset() });
 }
 
-// GET : lit le total sans l'incrémenter (visiteur déjà compté dans la session).
-export async function GET() {
-  return reponse(await upstash(`get/${CLE}`));
-}
-
-// POST : incrémente puis renvoie le nouveau total (nouvelle visite).
 export async function POST() {
-  return reponse(await upstash(`incr/${CLE}`));
+  if (!writeClient) {
+    return NextResponse.json(
+      { ok: false, error: "Compteur non configuré." },
+      { status: 503 }
+    );
+  }
+  try {
+    // Garantit l'existence du document au premier passage, puis incrémente.
+    await writeClient.createIfNotExists({
+      _id: DOC_ID,
+      _type: "visitCounter",
+      total: 0,
+    });
+    const updated = await writeClient
+      .patch(DOC_ID)
+      .setIfMissing({ total: 0 })
+      .inc({ total: 1 })
+      .commit();
+    const total = (updated as CounterDoc).total ?? (await lireTotal());
+    return NextResponse.json({ ok: true, total: total + offset() });
+  } catch {
+    return NextResponse.json(
+      { ok: false, error: "Compteur momentanément indisponible." },
+      { status: 502 }
+    );
+  }
 }
