@@ -100,6 +100,11 @@ export default function Accueil() {
                 >
                   <h2 className="font-serif text-xl sm:text-2xl group-hover:text-sienna-light transition-colors">
                     {expo.titre}
+                    {expo.statut === "en-cours" && (
+                      <span className="ml-3 align-middle text-xs uppercase tracking-[0.15em] text-sienna-light font-sans">
+                        En cours
+                      </span>
+                    )}
                   </h2>
                   <div className="flex flex-wrap gap-x-6 gap-y-1 mt-2 sm:mt-0 text-sm text-white/75">
                     <span>

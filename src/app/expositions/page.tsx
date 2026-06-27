@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 
 export default function ExpositionsPage() {
   const actuelles = getExpositionsActuelles();
+  const enCours = actuelles.filter((e) => e.statut === "en-cours");
+  const aVenir = actuelles.filter((e) => e.statut === "a-venir");
   const passees = getExpositionsPassees();
 
   return (
@@ -18,11 +20,22 @@ export default function ExpositionsPage() {
       <h1 className="font-serif text-4xl sm:text-5xl text-charcoal mb-3">Expositions</h1>
       <p className="text-stone text-lg mb-16">Nos rendez-vous artistiques</p>
 
-      {actuelles.length > 0 && (
+      {enCours.length > 0 && (
+        <section className="mb-20" aria-labelledby="expos-en-cours">
+          <h2 id="expos-en-cours" className="text-xs uppercase tracking-[0.2em] text-sienna mb-8 font-sans font-normal">En cours</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {enCours.map((expo) => (
+              <ExhibitionCard key={expo.slug} expo={expo} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {aVenir.length > 0 && (
         <section className="mb-20" aria-labelledby="expos-a-venir">
           <h2 id="expos-a-venir" className="text-xs uppercase tracking-[0.2em] text-sienna mb-8 font-sans font-normal">À venir</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {actuelles.map((expo) => (
+            {aVenir.map((expo) => (
               <ExhibitionCard key={expo.slug} expo={expo} />
             ))}
           </div>
