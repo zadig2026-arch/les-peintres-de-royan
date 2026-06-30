@@ -1,6 +1,6 @@
 ---
 artiste_slug: nicole-lesueur
-titre: Sorcières
+titre: La dame blanche
 slug: oeuvre-14
 image: /images/artistes/nicole-lesueur/oeuvre-14.jpg
 annee: '2023'
