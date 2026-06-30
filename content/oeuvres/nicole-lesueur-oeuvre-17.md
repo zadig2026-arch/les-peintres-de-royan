@@ -1,6 +1,6 @@
 ---
 artiste_slug: nicole-lesueur
-titre: Sorcières
+titre: La fée des glaces
 slug: oeuvre-17
 image: /images/artistes/nicole-lesueur/oeuvre-17.jpg
 annee: '2025'
