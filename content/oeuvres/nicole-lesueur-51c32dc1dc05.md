@@ -1,7 +1,7 @@
 ---
 artiste_slug: nicole-lesueur
 titre: Impressions
-slug: oeuvre-10
+slug: oeuvre-09
 image: /images/Impressions diptyque acrylique 70X100.jpg
 annee: '2024'
 technique: technique mixte - diptyque
