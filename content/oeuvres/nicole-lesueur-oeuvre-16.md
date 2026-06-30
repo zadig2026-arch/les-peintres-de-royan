@@ -1,6 +1,6 @@
 ---
 artiste_slug: nicole-lesueur
-titre: Sorcières
+titre: Eléments
 slug: oeuvre-16
 image: /images/artistes/nicole-lesueur/oeuvre-16.jpg
 annee: '2024'
