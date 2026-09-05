@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import { getArtisteBySlug, getArtisteSlugs, grouperOeuvresParSerie } from "@/lib/content";
 import ArtworkImage from "@/components/ui/ArtworkImage";
 import { notFound } from "next/navigation";
@@ -37,7 +38,7 @@ export default async function ArtistePage({ params }: Props) {
   const artiste = getArtisteBySlug(slug);
   if (!artiste) notFound();
 
-  const site = "https://lespeintresderoyan.fr";
+  const site = SITE_URL;
   const artisteUrl = `${site}/artistes/${artiste.slug}`;
   const sameAs: string[] = [];
   if (artiste.site_web) sameAs.push(artiste.site_web);

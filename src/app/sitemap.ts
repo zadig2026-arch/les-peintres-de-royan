@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { MetadataRoute } from "next";
 import { getArtisteSlugs, getExpositionSlugs } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -16,7 +17,7 @@ function mtime(relative: string): Date {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://lespeintresderoyan.fr";
+  const base = SITE_URL;
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [

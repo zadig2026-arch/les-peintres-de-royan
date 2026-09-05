@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Diaporama vidéo généré localement (segments .ts = MPEG-TS, pas TypeScript)
+    "diaporama-expo/**",
   ]),
 ]);
 

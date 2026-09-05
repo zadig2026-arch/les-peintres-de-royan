@@ -74,6 +74,14 @@ for (const { file, data } of expositions) {
   }
 }
 
+// 2b. Slugs en minuscules ASCII (un accent ou une espace = page 404 en prod)
+const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+for (const { file, data } of [...artistes, ...expositions]) {
+  if (data.slug && !SLUG_RE.test(data.slug)) {
+    err(`${file} : slug "${data.slug}" invalide (minuscules, chiffres et tirets uniquement, sans accent).`);
+  }
+}
+
 // 3. Chaque œuvre pointe vers un artiste existant
 for (const { file, data } of oeuvres) {
   if (!data.artiste_slug) {

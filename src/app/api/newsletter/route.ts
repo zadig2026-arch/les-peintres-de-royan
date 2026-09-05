@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { SITE_URL } from "@/lib/site";
 
 // Route d'inscription à la newsletter. Le contact est ajouté à une liste Brevo.
 // - Si BREVO_DOI_TEMPLATE_ID est défini : double opt-in (Brevo envoie un email
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
     : undefined;
   const redirectUrl =
     process.env.BREVO_DOI_REDIRECT_URL ||
-    "https://lespeintresderoyan.fr/?newsletter=confirmee";
+    `${SITE_URL}/?newsletter=confirmee`;
 
   if (!apiKey || !Number.isFinite(listId)) {
     console.error(

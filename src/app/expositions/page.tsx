@@ -2,6 +2,11 @@ import { getExpositionsActuelles, getExpositionsPassees } from "@/lib/content";
 import ExhibitionCard from "@/components/ui/ExhibitionCard";
 import type { Metadata } from "next";
 
+// Le statut (à venir / en cours / passée) est calculé d'après la date du jour,
+// mais la page est prérendue au build : on la régénère au plus toutes les
+// heures pour que les sections restent justes sans redéploiement.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Expositions",
   description:

@@ -1,10 +1,16 @@
-import { getExpositionBySlug, getExpositionSlugs } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
+import { getExpositionBySlug, getExpositionSlugs, normalizeSlug } from "@/lib/content";
 import ArtworkImage from "@/components/ui/ArtworkImage";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// Le statut (à venir / en cours / passée) est calculé d'après la date du jour,
+// mais la page est prérendue au build : on la régénère au plus toutes les
+// heures pour que les sections restent justes sans redéploiement.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return getExpositionSlugs().map((slug) => ({ slug }));
@@ -47,7 +53,15 @@ const statutConfig: Record<string, { label: string; className: string; dot: stri
 };
 
 export default async function ExpositionPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug: brut } = await params;
+  // Un slug saisi avec accent ou majuscule dans l'admin (ex. « lido-été ») a
+  // pu circuler : on renvoie vers sa forme normalisée plutôt qu'en 404.
+  let decode = brut;
+  try {
+    decode = decodeURIComponent(brut);
+  } catch {}
+  const slug = normalizeSlug(decode);
+  if (slug !== brut) permanentRedirect(`/expositions/${slug}`);
   const expo = getExpositionBySlug(slug);
   if (!expo) notFound();
 
@@ -62,7 +76,7 @@ export default async function ExpositionPage({ params }: Props) {
     endDate: expo.date_fin,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
-    ...(expo.image_principale && { image: `https://lespeintresderoyan.fr${expo.image_principale}` }),
+    ...(expo.image_principale && { image: `${SITE_URL}${expo.image_principale}` }),
     location: {
       "@type": "Place",
       name: expo.lieu,
@@ -76,7 +90,7 @@ export default async function ExpositionPage({ params }: Props) {
     organizer: {
       "@type": "Organization",
       name: "Les Peintres de Royan",
-      url: "https://lespeintresderoyan.fr",
+      url: SITE_URL,
     },
     isAccessibleForFree: expo.entree_libre,
   };

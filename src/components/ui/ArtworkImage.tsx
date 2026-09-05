@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { isThumbable, thumbSrcSet } from "@/lib/img";
+import { encodeImagePath, isThumbable, thumbSrcSet } from "@/lib/img";
 
 // Image de galerie avec vrai srcset (miniatures WebP + original).
 // next/image est inutilisable ici : images.unoptimized = true (quota Vercel
@@ -38,7 +38,7 @@ export default function ArtworkImage({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={encodeURI(src)}
+      src={encodeImagePath(src)}
       srcSet={useThumbs ? thumbSrcSet(src) : undefined}
       sizes={useThumbs ? sizes : undefined}
       alt={alt}

@@ -3,6 +3,11 @@ import { getPageAccueil, getExpositionsActuelles, getAllArtistes } from "@/lib/c
 import ArtworkImage from "@/components/ui/ArtworkImage";
 import NewsletterPopup from "@/components/ui/NewsletterPopup";
 
+// Le statut (à venir / en cours / passée) est calculé d'après la date du jour,
+// mais la page est prérendue au build : on la régénère au plus toutes les
+// heures pour que les sections restent justes sans redéploiement.
+export const revalidate = 3600;
+
 export default function Accueil() {
   const page = getPageAccueil();
   const expos = getExpositionsActuelles();

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_URL } from "@/lib/site";
 
 interface Crumb {
   label: string;
@@ -9,7 +10,7 @@ interface Props {
   items: Crumb[];
 }
 
-const SITE = "https://lespeintresderoyan.fr";
+const SITE = SITE_URL;
 
 export default function Breadcrumbs({ items }: Props) {
   const jsonLd = {

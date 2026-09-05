@@ -14,6 +14,20 @@ import type {
 
 const contentDir = path.join(process.cwd(), "content");
 
+// Les slugs saisis dans l'admin peuvent contenir accents, majuscules ou
+// espaces (ex. « 2026-07-lido-été »), ce qui donne une route introuvable en
+// production. On ramène tout à des minuscules ASCII séparées par des tirets,
+// à la lecture comme à la recherche, pour que l'URL affichée et la route
+// générée coïncident toujours.
+export function normalizeSlug(slug: string): string {
+  return slug
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function readMarkdownFiles<T>(dir: string): T[] {
   const fullPath = path.join(contentDir, dir);
   if (!fs.existsSync(fullPath)) return [];
@@ -40,11 +54,12 @@ function getOeuvresFichiers(): OeuvreFichier[] {
 
 function mergeOeuvresIntoArtiste(artiste: Artiste, oeuvresFichiers: OeuvreFichier[]): Artiste {
   const extra = oeuvresFichiers
-    .filter((o) => o.artiste_slug === artiste.slug)
+    .filter((o) => normalizeSlug(o.artiste_slug) === artiste.slug)
     .map(({ artiste_slug, slug, ...oeuvre }) => oeuvre);
   const inline = artiste.oeuvres ?? [];
   return {
     ...artiste,
+    slug: normalizeSlug(artiste.slug),
     series_ordre: normalizeSeriesOrdre(artiste.series_ordre),
     oeuvres: [...inline, ...extra],
   };
@@ -73,6 +88,7 @@ export function getAllArtistes(): Artiste[] {
   const oeuvresFichiers = getOeuvresFichiers();
   return readMarkdownFiles<Artiste>("artistes")
     .filter((a) => a.visible)
+    .map((a) => ({ ...a, slug: normalizeSlug(a.slug) }))
     .map((a) => mergeOeuvresIntoArtiste(a, oeuvresFichiers))
     .sort((a, b) => {
       const ordreA = a.ordre ?? 99;
@@ -83,9 +99,12 @@ export function getAllArtistes(): Artiste[] {
 }
 
 export function getArtisteBySlug(slug: string): Artiste | undefined {
-  const artiste = readMarkdownFiles<Artiste>("artistes").find((a) => a.slug === slug);
+  const cible = normalizeSlug(slug);
+  const artiste = readMarkdownFiles<Artiste>("artistes").find(
+    (a) => normalizeSlug(a.slug) === cible
+  );
   if (!artiste) return undefined;
-  return mergeOeuvresIntoArtiste(artiste, getOeuvresFichiers());
+  return mergeOeuvresIntoArtiste({ ...artiste, slug: cible }, getOeuvresFichiers());
 }
 
 export function getArtisteSlugs(): string[] {
@@ -106,7 +125,7 @@ function computeStatut(expo: Exposition): Exposition["statut"] {
 export function getAllExpositions(): Exposition[] {
   return readMarkdownFiles<Exposition>("expositions")
     .filter((e) => e.visible)
-    .map((e) => ({ ...e, statut: computeStatut(e) }))
+    .map((e) => ({ ...e, slug: normalizeSlug(e.slug), statut: computeStatut(e) }))
     .sort(
       (a, b) =>
         new Date(b.date_debut).getTime() - new Date(a.date_debut).getTime()
@@ -114,11 +133,12 @@ export function getAllExpositions(): Exposition[] {
 }
 
 export function getExpositionBySlug(slug: string): Exposition | undefined {
+  const cible = normalizeSlug(slug);
   const expo = readMarkdownFiles<Exposition>("expositions").find(
-    (e) => e.slug === slug
+    (e) => normalizeSlug(e.slug) === cible
   );
   if (!expo) return undefined;
-  return { ...expo, statut: computeStatut(expo) };
+  return { ...expo, slug: cible, statut: computeStatut(expo) };
 }
 
 export function getExpositionSlugs(): string[] {
@@ -265,12 +285,12 @@ export function getFeaturedOeuvres(limit = 8): FeaturedOeuvre[] {
         mtime: fs.statSync(fullPath).mtimeMs,
       };
     })
-    .filter((e) => artisteBySlug.has(e.data.artiste_slug))
+    .filter((e) => artisteBySlug.has(normalizeSlug(e.data.artiste_slug)))
     .sort((a, b) => b.mtime - a.mtime)
     .slice(0, limit);
 
   return entries.map(({ data }) => {
-    const artiste = artisteBySlug.get(data.artiste_slug)!;
+    const artiste = artisteBySlug.get(normalizeSlug(data.artiste_slug))!;
     const { artiste_slug, slug, ...oeuvre } = data;
     return { oeuvre, artiste: { nom: artiste.nom, slug: artiste.slug } };
   });

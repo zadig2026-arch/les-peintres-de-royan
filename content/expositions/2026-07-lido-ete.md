@@ -1,6 +1,6 @@
 ---
 titre: Exposition estivale au Lido
-slug: 2026-07-lido-été
+slug: 2026-07-lido-ete
 lieu: Cinéma Le Lido, salle VIP, Royan
 date_debut: 2026-07-13
 date_fin: 2026-07-26

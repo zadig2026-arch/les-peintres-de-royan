@@ -93,7 +93,7 @@ collections:
     sortable_fields: ["date_debut", "titre"]
     fields:
       - { label: "Titre", name: "titre", widget: "string" }
-      - { label: "Identifiant URL", name: "slug", widget: "string" }
+      - { label: "Identifiant URL", name: "slug", widget: "string", hint: "Ex: 2026-07-lido-ete (minuscules, tirets, sans accents)" }
       - { label: "Lieu", name: "lieu", widget: "string" }
       - { label: "Date de début", name: "date_debut", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
       - { label: "Date de fin", name: "date_fin", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }

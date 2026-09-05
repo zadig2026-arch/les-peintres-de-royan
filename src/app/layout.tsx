@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Libre_Baskerville, DM_Sans } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const libreBaskerville = Libre_Baskerville({
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   },
   description:
     "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
-  metadataBase: new URL("https://lespeintresderoyan.fr"),
+  metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   manifest: "/manifest.json",
   icons: {
@@ -83,12 +84,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": ["Organization", "LocalBusiness"],
-              "@id": "https://lespeintresderoyan.fr/#organization",
+              "@id": `${SITE_URL}/#organization`,
               name: "Les Peintres de Royan",
               alternateName: "Collectif Les Peintres de Royan",
-              url: "https://lespeintresderoyan.fr",
-              logo: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
-              image: "https://lespeintresderoyan.fr/images/site/logo-pr.png",
+              url: SITE_URL,
+              logo: `${SITE_URL}/images/site/logo-pr.png`,
+              image: `${SITE_URL}/images/site/logo-pr.png`,
               description:
                 "Association d'artistes amateurs réunis autour de l'Art Contemporain à Royan. Expositions et Journées de la Peinture en Charente-Maritime.",
               foundingDate: "2015",

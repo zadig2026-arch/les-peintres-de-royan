@@ -10,14 +10,20 @@ export function isThumbable(src: string): boolean {
   return src.startsWith("/images/") && /\.(jpe?g|png)$/i.test(src);
 }
 
+// encodeURI laisse passer la virgule, or un srcset s'en sert comme séparateur
+// de candidats : un nom de fichier contenant « , » casserait tout le srcset.
+export function encodeImagePath(src: string): string {
+  return encodeURI(src).replace(/,/g, "%2C");
+}
+
 export function thumbUrl(src: string, width: number): string {
-  return encodeURI(`/images/_thumbs${src.slice("/images".length)}.w${width}.webp`);
+  return encodeImagePath(`/images/_thumbs${src.slice("/images".length)}.w${width}.webp`);
 }
 
 // Le fichier original sert de plus grand candidat (compressé ≤1600px par le
 // script), pour rester net sur les grands affichages retina.
 export function thumbSrcSet(src: string): string {
   const candidates = THUMB_WIDTHS.map((w) => `${thumbUrl(src, w)} ${w}w`);
-  candidates.push(`${encodeURI(src)} 1600w`);
+  candidates.push(`${encodeImagePath(src)} 1600w`);
   return candidates.join(", ");
 }
