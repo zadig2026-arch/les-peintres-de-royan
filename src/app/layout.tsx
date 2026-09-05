@@ -119,6 +119,23 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* Nom de site pour Google : sans WebSite + name, les résultats de
+            recherche affichent l'URL brute à la place de « Les Peintres de Royan ». */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              name: "Les Peintres de Royan",
+              alternateName: ["Peintres de Royan", "Collectif Les Peintres de Royan"],
+              url: SITE_URL,
+              inLanguage: "fr-FR",
+              publisher: { "@id": `${SITE_URL}/#organization` },
+            }),
+          }}
+        />
         <Header />
         <main id="main" className="flex-1">{children}</main>
         <Footer />
